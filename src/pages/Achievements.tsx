@@ -92,13 +92,13 @@ const Achievements = () => {
   return (
     <div
       className={cn(
-        "min-h-screen bg-gradient-to-br from-[#F8FAFF] to-[#F0F4FF] dark:bg-[#0D0C1D] transition-colors duration-500 font-['Inter',sans-serif]",
+        "min-h-screen bg-gradient-to-br from-[#F8FAFF] to-[#F0F4FF] dark:bg-[#000000] transition-colors duration-500 font-['Inter',sans-serif]",
         "max-w-md mx-auto relative",
       )}
       style={{ maxWidth: "390px", minHeight: "844px" }}
     >
       {/* Header */}
-      <div className="bg-white/70 dark:bg-black/20 backdrop-blur-lg border-b border-gray-200/50 dark:border-[#2A2A3A] px-4 py-4">
+      <div className="bg-white/70 dark:bg-[#1A1A1A] border-b border-gray-200/50 dark:border-[#333333] px-4 py-4">
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate("/")}
@@ -106,7 +106,7 @@ const Achievements = () => {
           >
             <ArrowLeft className="w-5 h-5 text-gray-500 dark:text-[#8A8A8A]" />
           </button>
-          <h1 className="text-lg font-bold text-gray-900 dark:text-[#FFFFFF]">
+          <h1 className="text-lg font-bold text-gray-900 dark:text-white">
             Achievements
           </h1>
         </div>
@@ -115,8 +115,7 @@ const Achievements = () => {
       {/* Content */}
       <div className="px-4 py-6 pb-24 space-y-6">
         {/* Progress Overview */}
-        <Card className="bg-white/80 dark:bg-black/30 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 shadow-xl dark:shadow-2xl rounded-3xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-cyan-50/50 dark:from-purple-500/10 dark:to-cyan-500/10 pointer-events-none" />
+        <Card className="bg-white/80 dark:bg-[#1A1A1A] border border-gray-200/50 dark:border-[#333333] shadow-xl dark:shadow-none rounded-3xl overflow-hidden">
           <CardContent className="p-6 text-center relative z-10">
             <div className="text-5xl mb-3">🏆</div>
             <h3 className="font-bold text-xl mb-2 text-gray-900 dark:text-[#FFFFFF]">
@@ -133,7 +132,7 @@ const Achievements = () => {
         {earnedAchievements.length > 0 && (
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <Star className="w-5 h-5 text-[#00B976] dark:text-[#00FF9D] drop-shadow-sm dark:drop-shadow-[0_0_8px_rgba(0,255,157,0.6)]" />
+              <Star className="w-5 h-5 text-[#00B976] dark:text-[#22C55E]" />
               <h2 className="text-lg font-bold text-gray-900 dark:text-[#FFFFFF]">
                 Earned Achievements
               </h2>
@@ -142,12 +141,11 @@ const Achievements = () => {
               {earnedAchievements.map((achievement) => (
                 <Card
                   key={achievement.id}
-                  className="bg-white/80 dark:bg-black/30 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 shadow-xl dark:shadow-2xl rounded-3xl overflow-hidden border-l-4 border-l-[#00B976] dark:border-l-[#00FF9D]"
+                  className="bg-white/80 dark:bg-[#1A1A1A] border border-gray-200/50 dark:border-[#333333] shadow-xl dark:shadow-none rounded-3xl overflow-hidden border-l-4 border-l-[#00B976] dark:border-l-[#22C55E]"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-green-50/30 to-purple-50/30 dark:from-green-500/5 dark:to-purple-500/5 pointer-events-none" />
                   <CardContent className="p-4 relative z-10">
                     <div className="flex items-center gap-4">
-                      <div className="text-3xl p-2 bg-gradient-to-br from-[#00B976] to-[#2DD4BF] dark:from-[#00FF9D] dark:to-[#3AFF7C] rounded-2xl shadow-md dark:shadow-[0_0_16px_rgba(0,255,157,0.4)]">
+                      <div className="text-3xl p-2 bg-gradient-to-br from-[#00B976] to-[#2DD4BF] dark:bg-[#22C55E] rounded-2xl shadow-md dark:shadow-none">
                         {achievement.icon}
                       </div>
                       <div className="flex-1">
@@ -158,7 +156,7 @@ const Achievements = () => {
                           {achievement.description}
                         </p>
                         <div className="flex items-center gap-2">
-                          <span className="text-xs bg-green-100 dark:bg-[#00FF9D]/20 text-[#00B976] dark:text-[#00FF9D] px-2 py-1 rounded-full border border-green-200 dark:border-[#00FF9D]/30">
+                          <span className="text-xs bg-green-100 dark:bg-[#333333] text-[#00B976] dark:text-[#22C55E] px-2 py-1 rounded-full border border-green-200 dark:border-[#444444]">
                             {achievement.category}
                           </span>
                           <span className="text-xs text-gray-500 dark:text-[#8A8A8A]">
@@ -186,23 +184,22 @@ const Achievements = () => {
             {lockedAchievements.map((achievement) => (
               <Card
                 key={achievement.id}
-                className="bg-gray-100/80 dark:bg-black/20 backdrop-blur-xl border border-gray-300/50 dark:border-white/5 shadow-lg rounded-3xl overflow-hidden opacity-75"
+                className="bg-gray-100/80 dark:bg-[#0F0F0F] border border-gray-300/50 dark:border-[#2A2A2A] shadow-lg dark:shadow-none rounded-3xl overflow-hidden opacity-75"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-gray-50/30 to-purple-50/30 dark:from-gray-500/5 dark:to-purple-500/5 pointer-events-none" />
                 <CardContent className="p-4 relative z-10">
                   <div className="flex items-center gap-4">
-                    <div className="text-3xl grayscale p-2 bg-gray-200/80 dark:bg-black/20 backdrop-blur-sm border border-gray-300/50 dark:border-white/10 rounded-2xl">
+                    <div className="text-3xl grayscale p-2 bg-gray-200/80 dark:bg-[#333333] border border-gray-300/50 dark:border-[#444444] rounded-2xl">
                       {achievement.icon}
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-bold text-gray-700 dark:text-[#B0B0B0] mb-1">
+                      <h3 className="font-bold text-gray-700 dark:text-gray-300 mb-1">
                         {achievement.title}
                       </h3>
                       <p className="text-sm text-gray-600 dark:text-[#8A8A8A] mb-2">
                         {achievement.description}
                       </p>
                       <div className="flex items-center gap-2">
-                        <span className="text-xs bg-gray-200 dark:bg-black/20 text-gray-600 dark:text-[#8A8A8A] px-2 py-1 rounded-full border border-gray-300 dark:border-white/10">
+                        <span className="text-xs bg-gray-200 dark:bg-[#333333] text-gray-600 dark:text-gray-400 px-2 py-1 rounded-full border border-gray-300 dark:border-[#444444]">
                           {achievement.category}
                         </span>
                         <Lock className="w-3 h-3 text-gray-400 dark:text-[#555555]" />
