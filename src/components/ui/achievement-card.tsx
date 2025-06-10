@@ -18,10 +18,12 @@ const AchievementCard = React.forwardRef<HTMLDivElement, AchievementCardProps>(
         )}
         {...props}
       >
-        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#A259FF] to-[#B85FFF] shadow-[0_0_20px_rgba(162,89,255,0.5)] backdrop-blur-sm border border-white/20 flex items-center justify-center text-white text-lg font-bold">
+        <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#6B46FF] to-[#8B5CF6] dark:from-[#A259FF] dark:to-[#B85FFF] shadow-lg dark:shadow-[0_0_20px_rgba(162,89,255,0.5)] backdrop-blur-sm border border-purple-200 dark:border-white/20 flex items-center justify-center text-white text-lg font-bold">
           {icon}
         </div>
-        <span className="text-xs text-[#B0B0B0] font-medium">{title}</span>
+        <span className="text-xs text-gray-600 dark:text-[#B0B0B0] font-medium">
+          {title}
+        </span>
       </div>
     );
   },
