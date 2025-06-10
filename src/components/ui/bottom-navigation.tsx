@@ -32,18 +32,17 @@ const BottomNavigation = () => {
             <button
               key={item.path}
               onClick={() => navigate(item.path)}
-          className={cn(
-            "flex flex-col items-center gap-1 p-2 rounded-2xl transition-all duration-300",
-            isActive
-              ? "text-[#6B46FF] dark:text-[#8B5CF6] bg-purple-50 dark:bg-[#333333]"
-              : "text-gray-500 dark:text-gray-400 hover:text-[#6B46FF] dark:hover:text-[#8B5CF6] hover:bg-gray-100 dark:hover:bg-[#333333]",
-          )}
+              className={cn(
+                "flex flex-col items-center gap-1 p-2 rounded-2xl transition-all duration-300",
+                isActive
+                  ? "text-[#6B46FF] dark:text-[#8B5CF6] bg-purple-50 dark:bg-[#333333]"
+                  : "text-gray-500 dark:text-gray-400 hover:text-[#6B46FF] dark:hover:text-[#8B5CF6] hover:bg-gray-100 dark:hover:bg-[#333333]",
+              )}
             >
               <Icon
                 className={cn(
                   "w-5 h-5 transition-all duration-300",
-                  isActive &&
-                    "drop-shadow-md dark:drop-shadow-[0_0_8px_rgba(162,89,255,0.8)]",
+                  isActive && "drop-shadow-md",
                 )}
               />
               <span className="text-xs font-medium">{item.label}</span>
@@ -51,7 +50,7 @@ const BottomNavigation = () => {
           );
         })}
       </div>
-    </div>
+    </nav>
   );
 };
 
