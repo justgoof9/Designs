@@ -19,7 +19,7 @@ const Log = () => {
   ];
 
   const cravingLevels = [
-    { label: "None", value: "none", color: "bg-green-500" },
+    { label: "None", value: "none", color: "bg-[#7ED6A3]" },
     { label: "Low", value: "low", color: "bg-yellow-500" },
     { label: "Medium", value: "medium", color: "bg-orange-500" },
     { label: "High", value: "high", color: "bg-red-500" },
@@ -28,7 +28,7 @@ const Log = () => {
   return (
     <div
       className={cn(
-        "min-h-screen bg-[#F2F2F7] dark:bg-gray-900 transition-colors duration-200",
+        "min-h-screen bg-[#F4F6FA] dark:bg-gray-900 transition-colors duration-200",
         "max-w-md mx-auto relative",
       )}
       style={{ maxWidth: "390px", minHeight: "844px" }}
@@ -42,7 +42,7 @@ const Log = () => {
           >
             <ArrowLeft className="w-5 h-5 text-gray-600 dark:text-gray-400" />
           </button>
-          <h1 className="text-lg font-semibold text-black dark:text-white">
+          <h1 className="text-lg font-semibold text-[#2D2D2D] dark:text-white">
             Daily Log
           </h1>
         </div>
@@ -53,8 +53,8 @@ const Log = () => {
         {/* Today's Entry */}
         <Card className="bg-white dark:bg-gray-800 shadow-lg border-0 rounded-2xl">
           <CardHeader>
-            <CardTitle className="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
-              <Plus className="w-5 h-5 text-[#007AFF]" />
+            <CardTitle className="text-lg font-semibold text-[#2D2D2D] dark:text-white flex items-center gap-2">
+              <Plus className="w-5 h-5 text-[#5B8DEF]" />
               Today's Entry
             </CardTitle>
             <p className="text-sm text-gray-600 dark:text-gray-300">
@@ -69,7 +69,7 @@ const Log = () => {
           <CardContent className="space-y-6">
             {/* Mood Selection */}
             <div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-3">
+              <h3 className="font-semibold text-[#2D2D2D] dark:text-white mb-3">
                 How are you feeling today?
               </h3>
               <div className="grid grid-cols-2 gap-3">
@@ -80,12 +80,12 @@ const Log = () => {
                     className={cn(
                       "p-3 rounded-xl border-2 transition-all duration-200 text-center",
                       selectedMood === mood.value
-                        ? "border-[#007AFF] bg-[#007AFF]/10"
+                        ? "border-[#5B8DEF] bg-[#5B8DEF]/10"
                         : "border-gray-200 dark:border-gray-600 hover:border-gray-300",
                     )}
                   >
                     <div className="text-2xl mb-1">{mood.emoji}</div>
-                    <div className="text-sm font-medium text-gray-900 dark:text-white">
+                    <div className="text-sm font-medium text-[#2D2D2D] dark:text-white">
                       {mood.label}
                     </div>
                   </button>
@@ -95,7 +95,7 @@ const Log = () => {
 
             {/* Craving Level */}
             <div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-3">
+              <h3 className="font-semibold text-[#2D2D2D] dark:text-white mb-3">
                 Craving Level
               </h3>
               <div className="space-y-2">
@@ -106,12 +106,12 @@ const Log = () => {
                     className={cn(
                       "w-full p-3 rounded-xl border-2 transition-all duration-200 flex items-center gap-3",
                       selectedCraving === level.value
-                        ? "border-[#007AFF] bg-[#007AFF]/10"
+                        ? "border-[#5B8DEF] bg-[#5B8DEF]/10"
                         : "border-gray-200 dark:border-gray-600 hover:border-gray-300",
                     )}
                   >
                     <div className={cn("w-4 h-4 rounded-full", level.color)} />
-                    <span className="font-medium text-gray-900 dark:text-white">
+                    <span className="font-medium text-[#2D2D2D] dark:text-white">
                       {level.label}
                     </span>
                   </button>
@@ -122,7 +122,7 @@ const Log = () => {
             {/* Action Buttons */}
             <div className="space-y-3">
               <Button
-                className="w-full bg-[#007AFF] hover:bg-[#007AFF]/90 text-white rounded-xl py-3"
+                className="w-full bg-[#5B8DEF] hover:bg-[#5B8DEF]/90 text-white rounded-xl py-3"
                 disabled={!selectedMood || !selectedCraving}
               >
                 Save Entry
@@ -134,7 +134,7 @@ const Log = () => {
         {/* Recent Entries */}
         <Card className="bg-white dark:bg-gray-800 shadow-lg border-0 rounded-2xl">
           <CardHeader>
-            <CardTitle className="text-lg font-semibold text-gray-900 dark:text-white">
+            <CardTitle className="text-lg font-semibold text-[#2D2D2D] dark:text-white">
               Recent Entries
             </CardTitle>
           </CardHeader>
@@ -150,13 +150,13 @@ const Log = () => {
 
         {/* Quick Actions */}
         <div className="grid grid-cols-2 gap-4">
-          <Card className="bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 rounded-2xl">
+          <Card className="bg-[#7ED6A3]/10 dark:bg-[#7ED6A3]/20 border-[#7ED6A3]/30 dark:border-[#7ED6A3]/40 rounded-2xl">
             <CardContent className="p-4 text-center">
-              <CheckCircle className="w-8 h-8 text-green-500 mx-auto mb-2" />
-              <h4 className="font-semibold text-sm text-green-700 dark:text-green-300 mb-1">
+              <CheckCircle className="w-8 h-8 text-[#7ED6A3] mx-auto mb-2" />
+              <h4 className="font-semibold text-sm text-[#2D2D2D] dark:text-white mb-1">
                 Smoke-Free Day
               </h4>
-              <p className="text-xs text-green-600 dark:text-green-400">
+              <p className="text-xs text-gray-600 dark:text-gray-300">
                 Mark today as success
               </p>
             </CardContent>

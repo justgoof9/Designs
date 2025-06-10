@@ -92,7 +92,7 @@ const Achievements = () => {
   return (
     <div
       className={cn(
-        "min-h-screen bg-[#F2F2F7] dark:bg-gray-900 transition-colors duration-200",
+        "min-h-screen bg-[#F4F6FA] dark:bg-gray-900 transition-colors duration-200",
         "max-w-md mx-auto relative",
       )}
       style={{ maxWidth: "390px", minHeight: "844px" }}
@@ -106,7 +106,7 @@ const Achievements = () => {
           >
             <ArrowLeft className="w-5 h-5 text-gray-600 dark:text-gray-400" />
           </button>
-          <h1 className="text-lg font-semibold text-black dark:text-white">
+          <h1 className="text-lg font-semibold text-[#2D2D2D] dark:text-white">
             Achievements
           </h1>
         </div>
@@ -115,7 +115,7 @@ const Achievements = () => {
       {/* Content */}
       <div className="px-4 py-6 pb-24 space-y-6">
         {/* Progress Overview */}
-        <Card className="bg-gradient-to-r from-[#007AFF] to-[#5856D6] text-white shadow-lg border-0 rounded-2xl">
+        <Card className="bg-gradient-to-r from-[#5B8DEF] to-[#70D6FF] text-white shadow-lg border-0 rounded-2xl">
           <CardContent className="p-6 text-center">
             <div className="text-4xl mb-3">🏆</div>
             <h3 className="font-semibold text-xl mb-2">
@@ -133,7 +133,7 @@ const Achievements = () => {
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <Star className="w-5 h-5 text-yellow-500" />
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+              <h2 className="text-lg font-semibold text-[#2D2D2D] dark:text-white">
                 Earned Achievements
               </h2>
             </div>
@@ -141,20 +141,20 @@ const Achievements = () => {
               {earnedAchievements.map((achievement) => (
                 <Card
                   key={achievement.id}
-                  className="bg-white dark:bg-gray-800 shadow-lg border-0 rounded-2xl border-l-4 border-l-[#007AFF]"
+                  className="bg-white dark:bg-gray-800 shadow-lg border-0 rounded-2xl border-l-4 border-l-[#5B8DEF]"
                 >
                   <CardContent className="p-4">
                     <div className="flex items-center gap-4">
                       <div className="text-3xl">{achievement.icon}</div>
                       <div className="flex-1">
-                        <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                        <h3 className="font-semibold text-[#2D2D2D] dark:text-white mb-1">
                           {achievement.title}
                         </h3>
                         <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
                           {achievement.description}
                         </p>
                         <div className="flex items-center gap-2">
-                          <span className="text-xs bg-[#007AFF]/10 text-[#007AFF] px-2 py-1 rounded-full">
+                          <span className="text-xs bg-[#5B8DEF]/10 text-[#5B8DEF] px-2 py-1 rounded-full">
                             {achievement.category}
                           </span>
                           <span className="text-xs text-gray-500">
@@ -174,7 +174,7 @@ const Achievements = () => {
         <div className="space-y-4">
           <div className="flex items-center gap-2">
             <Lock className="w-5 h-5 text-gray-500" />
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+            <h2 className="text-lg font-semibold text-[#2D2D2D] dark:text-white">
               Upcoming Achievements
             </h2>
           </div>
@@ -188,7 +188,7 @@ const Achievements = () => {
                   <div className="flex items-center gap-4">
                     <div className="text-3xl grayscale">{achievement.icon}</div>
                     <div className="flex-1">
-                      <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+                      <h3 className="font-semibold text-[#2D2D2D] dark:text-white mb-1">
                         {achievement.title}
                       </h3>
                       <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
