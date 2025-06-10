@@ -23,7 +23,7 @@ const Insights = () => {
   const stats = [
     {
       id: "time" as const,
-      icon: <Clock className="w-6 h-6 text-[#6B46FF] dark:text-[#A259FF]" />,
+      icon: <Clock className="w-6 h-6 text-[#6B46FF] dark:text-[#8B5CF6]" />,
       title: "Time Smoke-Free",
       value: "0 days",
       subtitle: "Keep going!",
@@ -31,7 +31,7 @@ const Insights = () => {
     {
       id: "money" as const,
       icon: (
-        <DollarSign className="w-6 h-6 text-[#00B976] dark:text-[#00FF9D]" />
+        <DollarSign className="w-6 h-6 text-[#00B976] dark:text-[#22C55E]" />
       ),
       title: "Money Saved",
       value: "$0.00",
@@ -39,7 +39,7 @@ const Insights = () => {
     },
     {
       id: "health" as const,
-      icon: <Heart className="w-6 h-6 text-[#0B8FD9] dark:text-[#4EDCFF]" />,
+      icon: <Heart className="w-6 h-6 text-[#0B8FD9] dark:text-[#3B82F6]" />,
       title: "Health Improvements",
       value: "Just Started",
       subtitle: "Benefits coming soon",
@@ -47,7 +47,7 @@ const Insights = () => {
     {
       id: "streak" as const,
       icon: (
-        <TrendingUp className="w-6 h-6 text-[#00B976] dark:text-[#00FFAA]" />
+        <TrendingUp className="w-6 h-6 text-[#00B976] dark:text-[#22C55E]" />
       ),
       title: "Current Streak",
       value: "0 days",
@@ -58,13 +58,13 @@ const Insights = () => {
   return (
     <div
       className={cn(
-        "min-h-screen bg-gradient-to-br from-[#F8FAFF] to-[#F0F4FF] dark:bg-[#0D0C1D] transition-colors duration-500 font-['Inter',sans-serif]",
+        "min-h-screen bg-gradient-to-br from-[#F8FAFF] to-[#F0F4FF] dark:bg-[#000000] transition-colors duration-500 font-['Inter',sans-serif]",
         "max-w-md mx-auto relative",
       )}
       style={{ maxWidth: "390px", minHeight: "844px" }}
     >
       {/* Header */}
-      <div className="bg-white/70 dark:bg-black/20 backdrop-blur-lg border-b border-gray-200/50 dark:border-[#2A2A3A] px-4 py-4">
+      <div className="bg-white/70 dark:bg-[#1A1A1A] border-b border-gray-200/50 dark:border-[#333333] px-4 py-4">
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate("/")}
@@ -72,7 +72,7 @@ const Insights = () => {
           >
             <ArrowLeft className="w-5 h-5 text-gray-500 dark:text-[#8A8A8A]" />
           </button>
-          <h1 className="text-lg font-bold text-gray-900 dark:text-[#FFFFFF]">
+          <h1 className="text-lg font-bold text-gray-900 dark:text-white">
             Your Insights
           </h1>
         </div>
@@ -88,8 +88,7 @@ const Insights = () => {
               onClick={() => setSelectedStat(stat.id)}
               className="text-left transition-all duration-300 hover:scale-105"
             >
-              <Card className="bg-white/80 dark:bg-black/30 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 shadow-xl dark:shadow-2xl rounded-3xl hover:shadow-2xl dark:hover:shadow-[0_0_32px_rgba(162,89,255,0.2)] overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-50/30 to-cyan-50/30 dark:from-purple-500/5 dark:to-cyan-500/5 pointer-events-none" />
+              <Card className="bg-white/80 dark:bg-[#1A1A1A] border border-gray-200/50 dark:border-[#333333] shadow-xl dark:shadow-none rounded-3xl hover:shadow-2xl overflow-hidden">
                 <CardContent className="p-4 text-center relative z-10">
                   <div className="flex justify-center mb-3">
                     <div className="p-2 rounded-2xl bg-gray-100/80 dark:bg-black/20 backdrop-blur-sm border border-gray-200/50 dark:border-white/10">
@@ -112,8 +111,7 @@ const Insights = () => {
         </div>
 
         {/* AI Analysis Card */}
-        <Card className="bg-white/80 dark:bg-black/30 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 shadow-xl dark:shadow-2xl rounded-3xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-cyan-50/50 dark:from-purple-500/10 dark:to-cyan-500/10 pointer-events-none" />
+        <Card className="bg-white/80 dark:bg-[#1A1A1A] border border-gray-200/50 dark:border-[#333333] shadow-xl dark:shadow-none rounded-3xl overflow-hidden">
           <CardContent className="p-6 relative z-10">
             <div className="flex items-start gap-4">
               <div className="p-3 bg-gradient-to-br from-[#6B46FF] to-[#8B5CF6] dark:from-[#A259FF] dark:to-[#B85FFF] rounded-2xl shadow-lg dark:shadow-[0_0_20px_rgba(162,89,255,0.4)]">
@@ -142,8 +140,7 @@ const Insights = () => {
         </Card>
 
         {/* Daily Quote */}
-        <Card className="bg-white/80 dark:bg-black/30 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 shadow-xl dark:shadow-2xl rounded-3xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-cyan-50/30 to-purple-50/30 dark:from-cyan-500/5 dark:to-purple-500/5 pointer-events-none" />
+        <Card className="bg-white/80 dark:bg-[#1A1A1A] border border-gray-200/50 dark:border-[#333333] shadow-xl dark:shadow-none rounded-3xl overflow-hidden">
           <CardContent className="p-6 relative z-10">
             <div className="flex items-start gap-4">
               <div className="p-3 bg-gradient-to-br from-[#0B8FD9] to-[#3B82F6] dark:from-[#4EDCFF] dark:to-[#3A9BDC] rounded-2xl shadow-lg dark:shadow-[0_0_20px_rgba(78,220,255,0.4)]">
@@ -166,8 +163,7 @@ const Insights = () => {
         </Card>
 
         {/* Quick Progress Summary */}
-        <Card className="bg-white/80 dark:bg-black/30 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 shadow-xl dark:shadow-2xl rounded-3xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-green-50/30 to-purple-50/30 dark:from-green-500/5 dark:to-purple-500/5 pointer-events-none" />
+        <Card className="bg-white/80 dark:bg-[#1A1A1A] border border-gray-200/50 dark:border-[#333333] shadow-xl dark:shadow-none rounded-3xl overflow-hidden">
           <CardHeader className="relative z-10">
             <CardTitle className="text-lg font-bold text-gray-900 dark:text-[#FFFFFF]">
               Quick Summary
