@@ -73,23 +73,25 @@ const CommunityChat = () => {
   return (
     <div
       className={cn(
-        "min-h-screen bg-[#0D0C1D] transition-colors duration-200 font-['Inter',sans-serif]",
+        "min-h-screen bg-gradient-to-br from-[#F8FAFF] to-[#F0F4FF] dark:bg-[#0D0C1D] transition-colors duration-500 font-['Inter',sans-serif]",
         "max-w-md mx-auto relative flex flex-col",
       )}
       style={{ maxWidth: "390px", minHeight: "844px" }}
     >
       {/* Header */}
-      <div className="bg-black/20 backdrop-blur-lg border-b border-[#2A2A3A] px-4 py-4">
+      <div className="bg-white/70 dark:bg-black/20 backdrop-blur-lg border-b border-gray-200/50 dark:border-[#2A2A3A] px-4 py-4">
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate("/")}
-            className="p-2 rounded-2xl hover:bg-white/10 transition-all duration-300"
+            className="p-2 rounded-2xl hover:bg-gray-100 dark:hover:bg-white/10 transition-all duration-300"
           >
-            <ArrowLeft className="w-5 h-5 text-[#8A8A8A]" />
+            <ArrowLeft className="w-5 h-5 text-gray-500 dark:text-[#8A8A8A]" />
           </button>
           <div className="flex-1">
-            <h1 className="text-lg font-bold text-[#FFFFFF]">Community Chat</h1>
-            <p className="text-xs text-[#B0B0B0]">
+            <h1 className="text-lg font-bold text-gray-900 dark:text-[#FFFFFF]">
+              Community Chat
+            </h1>
+            <p className="text-xs text-gray-600 dark:text-[#B0B0B0]">
               {messages.length} members online
             </p>
           </div>
@@ -98,18 +100,18 @@ const CommunityChat = () => {
 
       {/* Welcome Card */}
       <div className="px-4 py-4">
-        <Card className="bg-black/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-3xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-cyan-500/10 pointer-events-none" />
+        <Card className="bg-white/80 dark:bg-black/30 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 shadow-xl dark:shadow-2xl rounded-3xl overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-cyan-50/50 dark:from-purple-500/10 dark:to-cyan-500/10 pointer-events-none" />
           <CardContent className="p-4 relative z-10">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-gradient-to-br from-[#A259FF] to-[#B85FFF] rounded-2xl shadow-[0_0_16px_rgba(162,89,255,0.4)]">
+              <div className="p-2 bg-gradient-to-br from-[#6B46FF] to-[#8B5CF6] dark:from-[#A259FF] dark:to-[#B85FFF] rounded-2xl shadow-lg dark:shadow-[0_0_16px_rgba(162,89,255,0.4)]">
                 <MessageCircle className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="font-bold text-lg text-[#FFFFFF]">
+                <h3 className="font-bold text-lg text-gray-900 dark:text-[#FFFFFF]">
                   Welcome to Support
                 </h3>
-                <p className="text-[#B0B0B0] text-sm">
+                <p className="text-gray-700 dark:text-[#B0B0B0] text-sm">
                   Share your journey with others who understand
                 </p>
               </div>
@@ -126,23 +128,32 @@ const CommunityChat = () => {
             className={cn(
               "shadow-lg border-0 rounded-3xl overflow-hidden",
               message.isOwn
-                ? "bg-gradient-to-br from-[#A259FF]/20 to-[#B85FFF]/20 backdrop-blur-xl border border-[#A259FF]/30 ml-8"
-                : "bg-black/30 backdrop-blur-xl border border-white/10 mr-8",
+                ? "bg-gradient-to-br from-[#6B46FF]/90 to-[#8B5CF6]/90 dark:from-[#A259FF]/20 dark:to-[#B85FFF]/20 backdrop-blur-xl border border-purple-200/50 dark:border-[#A259FF]/30 ml-8"
+                : "bg-white/90 dark:bg-black/30 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 mr-8",
             )}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent pointer-events-none" />
             <CardContent className="p-4 relative z-10">
               <div className="flex items-start justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <span
                     className={cn(
                       "font-bold text-sm",
-                      message.isOwn ? "text-[#A259FF]" : "text-[#4EDCFF]",
+                      message.isOwn
+                        ? "text-white dark:text-[#A259FF]"
+                        : "text-[#6B46FF] dark:text-[#4EDCFF]",
                     )}
                   >
                     {message.username}
                   </span>
-                  <span className="text-xs text-[#8A8A8A]">
+                  <span
+                    className={cn(
+                      "text-xs",
+                      message.isOwn
+                        ? "text-white/80 dark:text-[#8A8A8A]"
+                        : "text-gray-500 dark:text-[#8A8A8A]",
+                    )}
+                  >
                     {message.timestamp}
                   </span>
                 </div>
@@ -150,7 +161,9 @@ const CommunityChat = () => {
               <p
                 className={cn(
                   "text-sm leading-relaxed mb-3",
-                  message.isOwn ? "text-[#EDEDED]" : "text-[#FFFFFF]",
+                  message.isOwn
+                    ? "text-white dark:text-[#EDEDED]"
+                    : "text-gray-800 dark:text-[#FFFFFF]",
                 )}
               >
                 {message.message}
@@ -160,8 +173,8 @@ const CommunityChat = () => {
                   className={cn(
                     "flex items-center gap-1 text-xs px-3 py-1 rounded-full transition-all duration-300 backdrop-blur-sm",
                     message.isOwn
-                      ? "bg-white/10 text-[#EDEDED] hover:bg-white/20 border border-white/20"
-                      : "bg-black/20 text-[#B0B0B0] hover:bg-black/30 border border-white/10",
+                      ? "bg-white/20 dark:bg-white/10 text-white dark:text-[#EDEDED] hover:bg-white/30 dark:hover:bg-white/20 border border-white/30 dark:border-white/20"
+                      : "bg-gray-100 dark:bg-black/20 text-gray-700 dark:text-[#B0B0B0] hover:bg-gray-200 dark:hover:bg-black/30 border border-gray-200 dark:border-white/10",
                   )}
                 >
                   <Heart className="w-3 h-3" />
@@ -174,20 +187,20 @@ const CommunityChat = () => {
       </div>
 
       {/* Message Input */}
-      <div className="bg-black/30 backdrop-blur-xl p-4 border-t border-[#2A2A3A]">
+      <div className="bg-white/80 dark:bg-black/30 backdrop-blur-xl p-4 border-t border-gray-200/50 dark:border-[#2A2A3A]">
         <div className="flex gap-3">
           <input
             type="text"
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder="Share your thoughts..."
-            className="flex-1 px-4 py-3 bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl text-[#FFFFFF] placeholder-[#8A8A8A] focus:outline-none focus:ring-2 focus:ring-[#A259FF] focus:border-transparent"
+            className="flex-1 px-4 py-3 bg-gray-100/80 dark:bg-black/20 backdrop-blur-sm border border-gray-200/50 dark:border-white/10 rounded-2xl text-gray-900 dark:text-[#FFFFFF] placeholder-gray-500 dark:placeholder-[#8A8A8A] focus:outline-none focus:ring-2 focus:ring-[#6B46FF] dark:focus:ring-[#A259FF] focus:border-transparent"
             onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
           />
           <Button
             onClick={handleSendMessage}
             disabled={!newMessage.trim()}
-            className="bg-gradient-to-r from-[#A259FF] to-[#B85FFF] hover:from-[#B85FFF] hover:to-[#A259FF] text-white rounded-2xl px-4 border-0 shadow-[0_0_20px_rgba(162,89,255,0.4)] transition-all duration-300"
+            className="bg-gradient-to-r from-[#6B46FF] to-[#8B5CF6] dark:from-[#A259FF] dark:to-[#B85FFF] hover:from-[#5B3FD1] hover:to-[#7C3AED] dark:hover:from-[#B85FFF] dark:hover:to-[#A259FF] text-white rounded-2xl px-4 border-0 shadow-lg dark:shadow-[0_0_20px_rgba(162,89,255,0.4)] transition-all duration-300"
           >
             <Send className="w-5 h-5" />
           </Button>

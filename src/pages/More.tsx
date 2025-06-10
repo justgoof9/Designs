@@ -66,55 +66,57 @@ const More = () => {
   }) => (
     <button
       onClick={onClick}
-      className="w-full p-4 flex items-center gap-4 hover:bg-white/5 transition-all duration-300 rounded-2xl group"
+      className="w-full p-4 flex items-center gap-4 hover:bg-gray-50 dark:hover:bg-white/5 transition-all duration-300 rounded-2xl group"
     >
-      <div className="p-2 bg-gradient-to-br from-[#A259FF]/20 to-[#4EDCFF]/20 rounded-2xl border border-white/10 group-hover:shadow-[0_0_16px_rgba(162,89,255,0.3)] transition-all duration-300">
-        <Icon className="w-5 h-5 text-[#A259FF]" />
+      <div className="p-2 bg-gradient-to-br from-purple-100 to-cyan-100 dark:from-[#A259FF]/20 dark:to-[#4EDCFF]/20 rounded-2xl border border-purple-200/50 dark:border-white/10 group-hover:shadow-md dark:group-hover:shadow-[0_0_16px_rgba(162,89,255,0.3)] transition-all duration-300">
+        <Icon className="w-5 h-5 text-[#6B46FF] dark:text-[#A259FF]" />
       </div>
       <div className="flex-1 text-left">
-        <h3 className="font-bold text-[#FFFFFF]">{label}</h3>
-        <p className="text-sm text-[#B0B0B0]">{subtitle}</p>
+        <h3 className="font-bold text-gray-900 dark:text-[#FFFFFF]">{label}</h3>
+        <p className="text-sm text-gray-600 dark:text-[#B0B0B0]">{subtitle}</p>
       </div>
-      <ChevronRight className="w-5 h-5 text-[#8A8A8A] group-hover:text-[#A259FF] transition-colors duration-300" />
+      <ChevronRight className="w-5 h-5 text-gray-400 dark:text-[#8A8A8A] group-hover:text-[#6B46FF] dark:group-hover:text-[#A259FF] transition-colors duration-300" />
     </button>
   );
 
   return (
     <div
       className={cn(
-        "min-h-screen bg-[#0D0C1D] transition-colors duration-200 font-['Inter',sans-serif]",
+        "min-h-screen bg-gradient-to-br from-[#F8FAFF] to-[#F0F4FF] dark:bg-[#0D0C1D] transition-colors duration-500 font-['Inter',sans-serif]",
         "max-w-md mx-auto relative",
       )}
       style={{ maxWidth: "390px", minHeight: "844px" }}
     >
       {/* Header */}
-      <div className="bg-black/20 backdrop-blur-lg border-b border-[#2A2A3A] px-4 py-4">
+      <div className="bg-white/70 dark:bg-black/20 backdrop-blur-lg border-b border-gray-200/50 dark:border-[#2A2A3A] px-4 py-4">
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate("/")}
-            className="p-2 rounded-2xl hover:bg-white/10 transition-all duration-300"
+            className="p-2 rounded-2xl hover:bg-gray-100 dark:hover:bg-white/10 transition-all duration-300"
           >
-            <ArrowLeft className="w-5 h-5 text-[#8A8A8A]" />
+            <ArrowLeft className="w-5 h-5 text-gray-500 dark:text-[#8A8A8A]" />
           </button>
-          <h1 className="text-lg font-bold text-[#FFFFFF]">More</h1>
+          <h1 className="text-lg font-bold text-gray-900 dark:text-[#FFFFFF]">
+            More
+          </h1>
         </div>
       </div>
 
       {/* Content */}
       <div className="px-4 py-6 pb-24 space-y-6">
         {/* Profile Card */}
-        <Card className="bg-black/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-3xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-cyan-500/10 pointer-events-none" />
+        <Card className="bg-white/80 dark:bg-black/30 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 shadow-xl dark:shadow-2xl rounded-3xl overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-cyan-50/50 dark:from-purple-500/10 dark:to-cyan-500/10 pointer-events-none" />
           <CardContent className="p-6 relative z-10">
             <div className="flex items-center gap-4">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#A259FF] to-[#B85FFF] rounded-2xl flex items-center justify-center shadow-[0_0_20px_rgba(162,89,255,0.4)]">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#6B46FF] to-[#8B5CF6] dark:from-[#A259FF] dark:to-[#B85FFF] rounded-2xl flex items-center justify-center shadow-lg dark:shadow-[0_0_20px_rgba(162,89,255,0.4)]">
                 <User className="w-8 h-8 text-white" />
               </div>
               <div>
-                <h3 className="font-bold text-xl text-[#FFFFFF]">
+                <h3 className="font-bold text-xl text-gray-900 dark:text-[#FFFFFF]">
                   Welcome Back!
                 </h3>
-                <p className="text-[#B0B0B0] text-sm">
+                <p className="text-gray-700 dark:text-[#B0B0B0] text-sm">
                   Keep up the great work on your quit journey
                 </p>
               </div>
@@ -125,11 +127,11 @@ const More = () => {
         {/* Menu Sections */}
         {menuSections.map((section, index) => (
           <div key={index} className="space-y-3">
-            <h2 className="text-lg font-bold text-[#FFFFFF] px-2">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-[#FFFFFF] px-2">
               {section.title}
             </h2>
-            <Card className="bg-black/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-3xl overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
+            <Card className="bg-white/80 dark:bg-black/30 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 shadow-xl dark:shadow-2xl rounded-3xl overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent dark:from-white/5 dark:to-transparent pointer-events-none" />
               <CardContent className="p-2 relative z-10">
                 <div className="space-y-1">
                   {section.items.map((item, itemIndex) => (
@@ -148,32 +150,34 @@ const More = () => {
         ))}
 
         {/* App Info */}
-        <Card className="bg-black/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-3xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-cyan-500/5 pointer-events-none" />
+        <Card className="bg-white/80 dark:bg-black/30 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 shadow-xl dark:shadow-2xl rounded-3xl overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-50/30 to-cyan-50/30 dark:from-purple-500/5 dark:to-cyan-500/5 pointer-events-none" />
           <CardContent className="p-6 text-center relative z-10">
             <div className="text-5xl mb-3">🚭</div>
-            <h3 className="font-bold text-lg text-[#FFFFFF] mb-2">
+            <h3 className="font-bold text-lg text-gray-900 dark:text-[#FFFFFF] mb-2">
               NicotineFree
             </h3>
-            <p className="text-sm text-[#B0B0B0] mb-3">
+            <p className="text-sm text-gray-700 dark:text-[#B0B0B0] mb-3">
               Your Quit Journey Tracker
             </p>
-            <p className="text-xs text-[#8A8A8A]">Version 1.0.0</p>
+            <p className="text-xs text-gray-500 dark:text-[#8A8A8A]">
+              Version 1.0.0
+            </p>
           </CardContent>
         </Card>
 
         {/* Emergency Support */}
-        <Card className="bg-red-500/10 backdrop-blur-xl border border-red-500/20 rounded-3xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent pointer-events-none" />
+        <Card className="bg-red-50/90 dark:bg-red-500/10 backdrop-blur-xl border border-red-200/50 dark:border-red-500/20 rounded-3xl overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-red-50/30 to-transparent dark:from-red-500/5 dark:to-transparent pointer-events-none" />
           <CardContent className="p-6 text-center relative z-10">
             <div className="text-4xl mb-3">🆘</div>
-            <h3 className="font-bold text-lg text-red-400 mb-2">
+            <h3 className="font-bold text-lg text-red-700 dark:text-red-400 mb-2">
               Need Support?
             </h3>
-            <p className="text-sm text-red-300 mb-3">
+            <p className="text-sm text-red-600 dark:text-red-300 mb-3">
               If you're struggling, remember that help is available
             </p>
-            <button className="text-sm font-bold text-red-400 underline hover:text-red-300 transition-colors duration-300">
+            <button className="text-sm font-bold text-red-700 dark:text-red-400 underline hover:text-red-800 dark:hover:text-red-300 transition-colors duration-300">
               Contact Quitline: 1-800-QUIT-NOW
             </button>
           </CardContent>
