@@ -66,29 +66,29 @@ const More = () => {
   }) => (
     <button
       onClick={onClick}
-      className="w-full p-4 flex items-center gap-4 hover:bg-gray-50 dark:hover:bg-white/5 transition-all duration-300 rounded-2xl group"
+      className="w-full p-4 flex items-center gap-4 hover:bg-gray-50 dark:hover:bg-[#333333] transition-all duration-300 rounded-2xl group"
     >
-      <div className="p-2 bg-gradient-to-br from-purple-100 to-cyan-100 dark:from-[#A259FF]/20 dark:to-[#4EDCFF]/20 rounded-2xl border border-purple-200/50 dark:border-white/10 group-hover:shadow-md dark:group-hover:shadow-[0_0_16px_rgba(162,89,255,0.3)] transition-all duration-300">
-        <Icon className="w-5 h-5 text-[#6B46FF] dark:text-[#A259FF]" />
+      <div className="p-2 bg-gradient-to-br from-purple-100 to-cyan-100 dark:bg-[#333333] rounded-2xl border border-purple-200/50 dark:border-[#444444] group-hover:shadow-md dark:group-hover:shadow-none transition-all duration-300">
+        <Icon className="w-5 h-5 text-[#6B46FF] dark:text-[#8B5CF6]" />
       </div>
       <div className="flex-1 text-left">
         <h3 className="font-bold text-gray-900 dark:text-[#FFFFFF]">{label}</h3>
         <p className="text-sm text-gray-600 dark:text-[#B0B0B0]">{subtitle}</p>
       </div>
-      <ChevronRight className="w-5 h-5 text-gray-400 dark:text-[#8A8A8A] group-hover:text-[#6B46FF] dark:group-hover:text-[#A259FF] transition-colors duration-300" />
+      <ChevronRight className="w-5 h-5 text-gray-400 dark:text-gray-500 group-hover:text-[#6B46FF] dark:group-hover:text-[#8B5CF6] transition-colors duration-300" />
     </button>
   );
 
   return (
     <div
       className={cn(
-        "min-h-screen bg-gradient-to-br from-[#F8FAFF] to-[#F0F4FF] dark:bg-[#0D0C1D] transition-colors duration-500 font-['Inter',sans-serif]",
+        "min-h-screen bg-gradient-to-br from-[#F8FAFF] to-[#F0F4FF] dark:bg-[#000000] transition-colors duration-500 font-['Inter',sans-serif]",
         "max-w-md mx-auto relative",
       )}
       style={{ maxWidth: "390px", minHeight: "844px" }}
     >
       {/* Header */}
-      <div className="bg-white/70 dark:bg-black/20 backdrop-blur-lg border-b border-gray-200/50 dark:border-[#2A2A3A] px-4 py-4">
+      <div className="bg-white/70 dark:bg-[#1A1A1A] border-b border-gray-200/50 dark:border-[#333333] px-4 py-4">
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate("/")}
@@ -105,8 +105,7 @@ const More = () => {
       {/* Content */}
       <div className="px-4 py-6 pb-24 space-y-6">
         {/* Profile Card */}
-        <Card className="bg-white/80 dark:bg-black/30 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 shadow-xl dark:shadow-2xl rounded-3xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-cyan-50/50 dark:from-purple-500/10 dark:to-cyan-500/10 pointer-events-none" />
+        <Card className="bg-white/80 dark:bg-[#1A1A1A] border border-gray-200/50 dark:border-[#333333] shadow-xl dark:shadow-none rounded-3xl overflow-hidden">
           <CardContent className="p-6 relative z-10">
             <div className="flex items-center gap-4">
               <div className="w-16 h-16 bg-gradient-to-br from-[#6B46FF] to-[#8B5CF6] dark:from-[#A259FF] dark:to-[#B85FFF] rounded-2xl flex items-center justify-center shadow-lg dark:shadow-[0_0_20px_rgba(162,89,255,0.4)]">
@@ -130,8 +129,7 @@ const More = () => {
             <h2 className="text-lg font-bold text-gray-900 dark:text-[#FFFFFF] px-2">
               {section.title}
             </h2>
-            <Card className="bg-white/80 dark:bg-black/30 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 shadow-xl dark:shadow-2xl rounded-3xl overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent dark:from-white/5 dark:to-transparent pointer-events-none" />
+            <Card className="bg-white/80 dark:bg-[#1A1A1A] border border-gray-200/50 dark:border-[#333333] shadow-xl dark:shadow-none rounded-3xl overflow-hidden">
               <CardContent className="p-2 relative z-10">
                 <div className="space-y-1">
                   {section.items.map((item, itemIndex) => (
@@ -150,8 +148,7 @@ const More = () => {
         ))}
 
         {/* App Info */}
-        <Card className="bg-white/80 dark:bg-black/30 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 shadow-xl dark:shadow-2xl rounded-3xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-50/30 to-cyan-50/30 dark:from-purple-500/5 dark:to-cyan-500/5 pointer-events-none" />
+        <Card className="bg-white/80 dark:bg-[#1A1A1A] border border-gray-200/50 dark:border-[#333333] shadow-xl dark:shadow-none rounded-3xl overflow-hidden">
           <CardContent className="p-6 text-center relative z-10">
             <div className="text-5xl mb-3">🚭</div>
             <h3 className="font-bold text-lg text-gray-900 dark:text-[#FFFFFF] mb-2">
@@ -167,8 +164,7 @@ const More = () => {
         </Card>
 
         {/* Emergency Support */}
-        <Card className="bg-red-50/90 dark:bg-red-500/10 backdrop-blur-xl border border-red-200/50 dark:border-red-500/20 rounded-3xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-red-50/30 to-transparent dark:from-red-500/5 dark:to-transparent pointer-events-none" />
+        <Card className="bg-red-50/90 dark:bg-[#2A1A1A] border border-red-200/50 dark:border-[#444333] rounded-3xl overflow-hidden">
           <CardContent className="p-6 text-center relative z-10">
             <div className="text-4xl mb-3">🆘</div>
             <h3 className="font-bold text-lg text-red-700 dark:text-red-400 mb-2">
