@@ -18,10 +18,10 @@ const AchievementCard = React.forwardRef<HTMLDivElement, AchievementCardProps>(
         )}
         {...props}
       >
-        <div className="w-12 h-12 rounded-full bg-[#5B8DEF] flex items-center justify-center text-white text-lg">
+        <div className="w-12 h-12 rounded-full bg-[#4D7EFF] flex items-center justify-center text-white text-lg">
           {icon}
         </div>
-        <span className="text-xs text-gray-600 dark:text-gray-300 font-medium">
+        <span className="text-xs text-[#555C67] dark:text-gray-300 font-medium">
           {title}
         </span>
       </div>

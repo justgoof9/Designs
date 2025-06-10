@@ -78,38 +78,38 @@ const Index = () => {
   // Calculate days until 0mg target (this would be dynamic based on user's plan)
   const daysUntilZero = 17; // This would be calculated from user's reduction plan
 
-  // Overall progress metrics with uniform Lucide icons
+  // Overall progress metrics with new theme colors
   const progressMetrics = [
     {
       icon: Calendar,
       label: "Days to 0mg",
       value: "17 days left",
-      color: "text-[#5B8DEF]",
+      color: "text-[#4D7EFF]", // Primary indigo blue
     },
     {
       icon: Cigarette,
       label: "Units Avoided",
       value: "12 cigarettes / 8 vapes",
-      color: "text-[#7ED6A3]",
+      color: "text-[#3FBF7D]", // Fresh green for success
     },
     {
       icon: DollarSign,
       label: "Money Saved",
       value: "$32.50",
-      color: "text-[#70D6FF]",
+      color: "text-[#3FBF7D]", // Fresh green for success
     },
     {
       icon: Clock,
       label: "Time Saved",
       value: "3 hrs 45 mins",
-      color: "text-orange-500",
+      color: "text-[#FF9E45]", // Vibrant orange for time
     },
   ];
 
   return (
     <div
       className={cn(
-        "min-h-screen bg-[#F4F6FA] dark:bg-gray-900 transition-colors duration-200",
+        "min-h-screen bg-[#F7F9FB] dark:bg-gray-900 transition-colors duration-200",
         "max-w-md mx-auto relative",
       )}
       style={{ maxWidth: "390px", minHeight: "844px" }}
@@ -117,13 +117,13 @@ const Index = () => {
       {/* Top Header */}
       <div className="bg-white dark:bg-gray-800 px-4 py-3 border-b border-gray-200 dark:border-gray-700">
         {/* iOS Status Bar */}
-        <div className="flex items-center justify-between text-sm font-semibold text-[#2D2D2D] dark:text-white mb-2">
+        <div className="flex items-center justify-between text-sm font-semibold text-[#1E1E1E] dark:text-white mb-2">
           <span>{formatTime(currentTime)}</span>
           <div className="flex items-center gap-1">
             <div className="flex gap-1">
-              <div className="w-1 h-3 bg-[#2D2D2D] dark:bg-white rounded-full"></div>
-              <div className="w-1 h-3 bg-[#2D2D2D] dark:bg-white rounded-full"></div>
-              <div className="w-1 h-3 bg-[#2D2D2D] dark:bg-white rounded-full"></div>
+              <div className="w-1 h-3 bg-[#1E1E1E] dark:bg-white rounded-full"></div>
+              <div className="w-1 h-3 bg-[#1E1E1E] dark:bg-white rounded-full"></div>
+              <div className="w-1 h-3 bg-[#1E1E1E] dark:bg-white rounded-full"></div>
               <div className="w-1 h-3 bg-gray-300 dark:bg-gray-600 rounded-full"></div>
             </div>
             <span className="ml-2">100%</span>
@@ -133,7 +133,7 @@ const Index = () => {
         {/* Header Content */}
         <div className="flex items-center justify-between">
           <div></div>
-          <h1 className="text-lg font-semibold text-[#2D2D2D] dark:text-white">
+          <h1 className="text-lg font-semibold text-[#1E1E1E] dark:text-white">
             NicotineFree
           </h1>
           <div className="flex items-center gap-2">
@@ -141,7 +141,7 @@ const Index = () => {
               onClick={() => navigate("/achievements")}
               className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
             >
-              <Trophy className="w-5 h-5 text-[#5B8DEF]" />
+              <Trophy className="w-5 h-5 text-[#4D7EFF]" />
             </button>
             <button
               onClick={toggleDarkMode}
@@ -162,7 +162,7 @@ const Index = () => {
         {/* Combined Progress + Inspiration Card */}
         <Card className="bg-white dark:bg-gray-800 shadow-lg border-0 rounded-2xl">
           <CardHeader className="pb-4">
-            <CardTitle className="text-lg font-semibold text-[#2D2D2D] dark:text-white">
+            <CardTitle className="text-lg font-semibold text-[#1E1E1E] dark:text-white">
               Today's Status
             </CardTitle>
           </CardHeader>
@@ -170,26 +170,26 @@ const Index = () => {
             {/* Nicotine Reduction Message */}
             <div className="space-y-4">
               <div className="space-y-3">
-                <p className="text-2xl font-bold text-[#5B8DEF] mb-2">
+                <p className="text-2xl font-bold text-[#4D7EFF] mb-2">
                   You've used 2.3 mg today – down 15% from your average.
                 </p>
 
                 {/* Days until 0mg target */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-[#5B8DEF]" />
-                    <span className="text-sm font-medium text-[#2D2D2D] dark:text-white">
+                    <Calendar className="w-4 h-4 text-[#4D7EFF]" />
+                    <span className="text-sm font-medium text-[#1E1E1E] dark:text-white">
                       Days until 0mg target:
                     </span>
                   </div>
-                  <div className="bg-[#5B8DEF]/10 px-3 py-1 rounded-full">
-                    <span className="text-sm font-bold text-[#5B8DEF]">
+                  <div className="bg-[#F0F4FF] px-3 py-1 rounded-full">
+                    <span className="text-sm font-bold text-[#4D7EFF]">
                       {daysUntilZero} days left
                     </span>
                   </div>
                 </div>
 
-                <p className="text-sm text-gray-600 dark:text-gray-300">
+                <p className="text-sm text-[#555C67] dark:text-gray-300">
                   Great progress! You're successfully reducing your nicotine
                   intake.
                 </p>
@@ -197,7 +197,7 @@ const Index = () => {
 
               {/* Progress Visual - 7 dots for trend/streak */}
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-[#2D2D2D] dark:text-gray-300">
+                <span className="text-sm font-medium text-[#1E1E1E] dark:text-gray-300">
                   Reduction Progress
                 </span>
                 <ProgressDots totalDots={7} filledDots={5} />
@@ -211,8 +211,8 @@ const Index = () => {
                 className={cn(
                   "px-8 py-3 rounded-xl text-white font-medium transition-all duration-200",
                   hasLoggedToday
-                    ? "bg-[#7ED6A3] hover:bg-[#7ED6A3]/90"
-                    : "bg-[#5B8DEF] hover:bg-[#5B8DEF]/90",
+                    ? "bg-[#3FBF7D] hover:bg-[#3FBF7D]/90"
+                    : "bg-[#4D7EFF] hover:bg-[#4D7EFF]/90",
                 )}
               >
                 <Plus className="w-5 h-5 mr-2" />
@@ -233,22 +233,22 @@ const Index = () => {
               )}
             >
               <div className="flex items-center justify-center gap-2 mb-3">
-                <Quote className="w-4 h-4 text-[#5B8DEF]" />
-                <span className="text-sm font-medium text-[#2D2D2D] dark:text-white opacity-70">
+                <Quote className="w-4 h-4 text-[#4D7EFF]" />
+                <span className="text-sm font-medium text-[#1E1E1E] dark:text-white opacity-70">
                   Daily Inspiration
                 </span>
               </div>
-              <blockquote className="text-[#2D2D2D] dark:text-white text-sm leading-relaxed italic font-medium opacity-80">
+              <blockquote className="text-[#1E1E1E] dark:text-white text-sm leading-relaxed italic font-medium opacity-80">
                 "{todaysQuote}"
               </blockquote>
             </div>
           </CardContent>
         </Card>
 
-        {/* Overall Progress Summary Card - Refined */}
+        {/* Overall Progress Summary Card - New Theme */}
         <Card className="bg-white dark:bg-gray-800 shadow-lg border-0 rounded-2xl">
           <CardHeader className="pb-4">
-            <CardTitle className="text-lg font-semibold text-[#2D2D2D] dark:text-white flex items-center gap-2">
+            <CardTitle className="text-lg font-semibold text-[#1E1E1E] dark:text-white flex items-center gap-2">
               📊 Your Overall Progress
             </CardTitle>
           </CardHeader>
@@ -277,7 +277,7 @@ const Index = () => {
                     <div className="flex justify-center mb-3">
                       <div
                         className={cn(
-                          "p-2 rounded-lg bg-gray-50 dark:bg-gray-700",
+                          "p-2 rounded-lg bg-[#F0F4FF] dark:bg-gray-700",
                         )}
                       >
                         <Icon className={cn("w-5 h-5", metric.color)} />
@@ -285,7 +285,7 @@ const Index = () => {
                     </div>
 
                     {/* Label - Above Value */}
-                    <div className="text-xs font-medium text-gray-600 dark:text-gray-400 mb-2 leading-tight">
+                    <div className="text-xs font-medium text-[#555C67] dark:text-gray-400 mb-2 leading-tight">
                       {metric.label}
                     </div>
 
