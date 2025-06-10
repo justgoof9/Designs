@@ -8,6 +8,7 @@ import {
   Calendar,
   Clock,
   DollarSign,
+  Cigarette,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -77,29 +78,29 @@ const Index = () => {
   // Calculate days until 0mg target (this would be dynamic based on user's plan)
   const daysUntilZero = 17; // This would be calculated from user's reduction plan
 
-  // Overall progress metrics (would come from stored data/calculations)
+  // Overall progress metrics with uniform Lucide icons
   const progressMetrics = [
     {
-      icon: "📆",
+      icon: Calendar,
       label: "Days to 0mg",
       value: "17 days left",
       color: "text-[#5B8DEF]",
     },
     {
-      icon: "🚭",
-      label: "Units avoided",
+      icon: Cigarette,
+      label: "Units Avoided",
       value: "12 cigarettes / 8 vapes",
       color: "text-[#7ED6A3]",
     },
     {
-      icon: "💵",
-      label: "Money saved",
+      icon: DollarSign,
+      label: "Money Saved",
       value: "$32.50",
       color: "text-[#70D6FF]",
     },
     {
-      icon: "⏱",
-      label: "Time saved",
+      icon: Clock,
+      label: "Time Saved",
       value: "3 hrs 45 mins",
       color: "text-orange-500",
     },
@@ -244,7 +245,7 @@ const Index = () => {
           </CardContent>
         </Card>
 
-        {/* Overall Progress Summary Card */}
+        {/* Overall Progress Summary Card - Refined */}
         <Card className="bg-white dark:bg-gray-800 shadow-lg border-0 rounded-2xl">
           <CardHeader className="pb-4">
             <CardTitle className="text-lg font-semibold text-[#2D2D2D] dark:text-white flex items-center gap-2">
@@ -252,24 +253,54 @@ const Index = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            {/* 2x2 Grid Layout for Progress Metrics */}
-            <div className="grid grid-cols-2 gap-3">
-              {progressMetrics.map((metric, index) => (
-                <div
-                  key={index}
-                  className="bg-[#F4F6FA] dark:bg-gray-700 p-4 rounded-xl"
-                >
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-lg">{metric.icon}</span>
-                    <span className="text-xs font-medium text-[#2D2D2D] dark:text-white opacity-70">
+            {/* 2x2 Grid Layout with Separators */}
+            <div className="grid grid-cols-2 gap-0">
+              {progressMetrics.map((metric, index) => {
+                const Icon = metric.icon;
+                const isRightColumn = index % 2 === 1;
+                const isBottomRow = index >= 2;
+
+                return (
+                  <div
+                    key={index}
+                    className={cn(
+                      "relative p-4 text-center",
+                      // Add right border for left column items
+                      !isRightColumn &&
+                        "border-r border-gray-200 dark:border-gray-600",
+                      // Add bottom border for top row items
+                      !isBottomRow &&
+                        "border-b border-gray-200 dark:border-gray-600",
+                    )}
+                  >
+                    {/* Icon */}
+                    <div className="flex justify-center mb-3">
+                      <div
+                        className={cn(
+                          "p-2 rounded-lg bg-gray-50 dark:bg-gray-700",
+                        )}
+                      >
+                        <Icon className={cn("w-5 h-5", metric.color)} />
+                      </div>
+                    </div>
+
+                    {/* Label - Above Value */}
+                    <div className="text-xs font-medium text-gray-600 dark:text-gray-400 mb-2 leading-tight">
                       {metric.label}
-                    </span>
+                    </div>
+
+                    {/* Value - Uniform Font Weight and Size */}
+                    <div
+                      className={cn(
+                        "text-sm font-bold leading-tight",
+                        metric.color,
+                      )}
+                    >
+                      {metric.value}
+                    </div>
                   </div>
-                  <div className={cn("text-sm font-bold", metric.color)}>
-                    {metric.value}
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </CardContent>
         </Card>
