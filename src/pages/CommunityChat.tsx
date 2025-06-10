@@ -73,13 +73,13 @@ const CommunityChat = () => {
   return (
     <div
       className={cn(
-        "min-h-screen bg-gradient-to-br from-[#F8FAFF] to-[#F0F4FF] dark:bg-[#0D0C1D] transition-colors duration-500 font-['Inter',sans-serif]",
+        "min-h-screen bg-gradient-to-br from-[#F8FAFF] to-[#F0F4FF] dark:bg-[#000000] transition-colors duration-500 font-['Inter',sans-serif]",
         "max-w-md mx-auto relative flex flex-col",
       )}
       style={{ maxWidth: "390px", minHeight: "844px" }}
     >
       {/* Header */}
-      <div className="bg-white/70 dark:bg-black/20 backdrop-blur-lg border-b border-gray-200/50 dark:border-[#2A2A3A] px-4 py-4">
+      <div className="bg-white/70 dark:bg-[#1A1A1A] border-b border-gray-200/50 dark:border-[#333333] px-4 py-4">
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate("/")}
@@ -100,8 +100,7 @@ const CommunityChat = () => {
 
       {/* Welcome Card */}
       <div className="px-4 py-4">
-        <Card className="bg-white/80 dark:bg-black/30 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 shadow-xl dark:shadow-2xl rounded-3xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-cyan-50/50 dark:from-purple-500/10 dark:to-cyan-500/10 pointer-events-none" />
+        <Card className="bg-white/80 dark:bg-[#1A1A1A] border border-gray-200/50 dark:border-[#333333] shadow-xl dark:shadow-none rounded-3xl overflow-hidden">
           <CardContent className="p-4 relative z-10">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-gradient-to-br from-[#6B46FF] to-[#8B5CF6] dark:from-[#A259FF] dark:to-[#B85FFF] rounded-2xl shadow-lg dark:shadow-[0_0_16px_rgba(162,89,255,0.4)]">
@@ -128,8 +127,8 @@ const CommunityChat = () => {
             className={cn(
               "shadow-lg border-0 rounded-3xl overflow-hidden",
               message.isOwn
-                ? "bg-gradient-to-br from-[#6B46FF]/90 to-[#8B5CF6]/90 dark:from-[#A259FF]/20 dark:to-[#B85FFF]/20 backdrop-blur-xl border border-purple-200/50 dark:border-[#A259FF]/30 ml-8"
-                : "bg-white/90 dark:bg-black/30 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 mr-8",
+                ? "bg-gradient-to-br from-[#6B46FF]/90 to-[#8B5CF6]/90 dark:bg-[#8B5CF6] border border-purple-200/50 dark:border-[#333333] ml-8"
+                : "bg-white/90 dark:bg-[#1A1A1A] border border-gray-200/50 dark:border-[#333333] mr-8",
             )}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent pointer-events-none" />
@@ -140,8 +139,8 @@ const CommunityChat = () => {
                     className={cn(
                       "font-bold text-sm",
                       message.isOwn
-                        ? "text-white dark:text-[#A259FF]"
-                        : "text-[#6B46FF] dark:text-[#4EDCFF]",
+                        ? "text-white"
+                        : "text-[#6B46FF] dark:text-[#3B82F6]",
                     )}
                   >
                     {message.username}
@@ -162,8 +161,8 @@ const CommunityChat = () => {
                 className={cn(
                   "text-sm leading-relaxed mb-3",
                   message.isOwn
-                    ? "text-white dark:text-[#EDEDED]"
-                    : "text-gray-800 dark:text-[#FFFFFF]",
+                    ? "text-white"
+                    : "text-gray-800 dark:text-white",
                 )}
               >
                 {message.message}
@@ -187,20 +186,20 @@ const CommunityChat = () => {
       </div>
 
       {/* Message Input */}
-      <div className="bg-white/80 dark:bg-black/30 backdrop-blur-xl p-4 border-t border-gray-200/50 dark:border-[#2A2A3A]">
+      <div className="bg-white/80 dark:bg-[#1A1A1A] p-4 border-t border-gray-200/50 dark:border-[#333333]">
         <div className="flex gap-3">
           <input
             type="text"
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder="Share your thoughts..."
-            className="flex-1 px-4 py-3 bg-gray-100/80 dark:bg-black/20 backdrop-blur-sm border border-gray-200/50 dark:border-white/10 rounded-2xl text-gray-900 dark:text-[#FFFFFF] placeholder-gray-500 dark:placeholder-[#8A8A8A] focus:outline-none focus:ring-2 focus:ring-[#6B46FF] dark:focus:ring-[#A259FF] focus:border-transparent"
+            className="flex-1 px-4 py-3 bg-gray-100/80 dark:bg-[#333333] border border-gray-200/50 dark:border-[#444444] rounded-2xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6B46FF] dark:focus:ring-[#8B5CF6] focus:border-transparent"
             onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
           />
           <Button
             onClick={handleSendMessage}
             disabled={!newMessage.trim()}
-            className="bg-gradient-to-r from-[#6B46FF] to-[#8B5CF6] dark:from-[#A259FF] dark:to-[#B85FFF] hover:from-[#5B3FD1] hover:to-[#7C3AED] dark:hover:from-[#B85FFF] dark:hover:to-[#A259FF] text-white rounded-2xl px-4 border-0 shadow-lg dark:shadow-[0_0_20px_rgba(162,89,255,0.4)] transition-all duration-300"
+            className="bg-gradient-to-r from-[#6B46FF] to-[#8B5CF6] dark:bg-[#8B5CF6] hover:from-[#5B3FD1] hover:to-[#7C3AED] dark:hover:bg-[#7C3AED] text-white rounded-2xl px-4 border-0 shadow-lg dark:shadow-none transition-all duration-300"
           >
             <Send className="w-5 h-5" />
           </Button>
