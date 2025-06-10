@@ -241,10 +241,10 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
                       key={option.id}
                       onClick={() => setUsageComparison(option.id)}
                       className={cn(
-                        "w-full p-3 rounded-2xl border-2 transition-all duration-300 flex items-center gap-3 backdrop-blur-sm",
+                        "w-full p-3 rounded-2xl border-2 transition-all duration-300 flex items-center gap-3",
                         usageComparison === option.id
-                          ? "border-[#6B46FF] dark:border-[#A259FF] bg-purple-50 dark:bg-[#A259FF]/20 shadow-md dark:shadow-[0_0_16px_rgba(162,89,255,0.3)]"
-                          : "border-gray-200 dark:border-white/10 hover:border-purple-300 dark:hover:border-[#A259FF]/50 bg-white/50 dark:bg-black/20",
+                          ? "border-[#6B46FF] dark:border-[#8B5CF6] bg-purple-50 dark:bg-[#333333]"
+                          : "border-gray-200 dark:border-[#444444] hover:border-purple-300 dark:hover:border-[#8B5CF6] bg-white/50 dark:bg-[#1A1A1A]",
                       )}
                     >
                       <div className={cn("flex-shrink-0", option.color)}>
@@ -275,10 +275,10 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
                       key={mood.value}
                       onClick={() => setSelectedMood(mood.value)}
                       className={cn(
-                        "p-3 rounded-2xl border-2 transition-all duration-300 text-center backdrop-blur-sm",
+                        "p-3 rounded-2xl border-2 transition-all duration-300 text-center",
                         selectedMood === mood.value
-                          ? "border-[#6B46FF] dark:border-[#A259FF] bg-purple-50 dark:bg-[#A259FF]/20 shadow-md dark:shadow-[0_0_16px_rgba(162,89,255,0.3)]"
-                          : "border-gray-200 dark:border-white/10 hover:border-purple-300 dark:hover:border-[#A259FF]/50 bg-white/50 dark:bg-black/20",
+                          ? "border-[#6B46FF] dark:border-[#8B5CF6] bg-purple-50 dark:bg-[#333333]"
+                          : "border-gray-200 dark:border-[#444444] hover:border-purple-300 dark:hover:border-[#8B5CF6] bg-white/50 dark:bg-[#1A1A1A]",
                       )}
                     >
                       <div className="text-2xl mb-1">{mood.emoji}</div>
@@ -302,10 +302,10 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
                       key={level.value}
                       onClick={() => setSelectedCraving(level.value)}
                       className={cn(
-                        "w-full p-3 rounded-2xl border-2 transition-all duration-300 flex items-center gap-3 backdrop-blur-sm",
+                        "w-full p-3 rounded-2xl border-2 transition-all duration-300 flex items-center gap-3",
                         selectedCraving === level.value
-                          ? "border-[#6B46FF] dark:border-[#A259FF] bg-purple-50 dark:bg-[#A259FF]/20 shadow-md dark:shadow-[0_0_16px_rgba(162,89,255,0.3)]"
-                          : "border-gray-200 dark:border-white/10 hover:border-purple-300 dark:hover:border-[#A259FF]/50 bg-white/50 dark:bg-black/20",
+                          ? "border-[#6B46FF] dark:border-[#8B5CF6] bg-purple-50 dark:bg-[#333333]"
+                          : "border-gray-200 dark:border-[#444444] hover:border-purple-300 dark:hover:border-[#8B5CF6] bg-white/50 dark:bg-[#1A1A1A]",
                       )}
                     >
                       <div
@@ -334,13 +334,13 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
                         )
                       }
                       className={cn(
-                        "w-full p-3 rounded-2xl border-2 transition-all duration-300 flex items-center gap-3 backdrop-blur-sm",
+                        "w-full p-3 rounded-2xl border-2 transition-all duration-300 flex items-center gap-3",
                         selectedProduct === product.id
-                          ? "border-[#6B46FF] dark:border-[#A259FF] bg-purple-50 dark:bg-[#A259FF]/20 shadow-md dark:shadow-[0_0_16px_rgba(162,89,255,0.3)]"
-                          : "border-gray-200 dark:border-white/10 hover:border-purple-300 dark:hover:border-[#A259FF]/50 bg-white/50 dark:bg-black/20",
+                          ? "border-[#6B46FF] dark:border-[#8B5CF6] bg-purple-50 dark:bg-[#333333]"
+                          : "border-gray-200 dark:border-[#444444] hover:border-purple-300 dark:hover:border-[#8B5CF6] bg-white/50 dark:bg-[#1A1A1A]",
                       )}
                     >
-                      <div className="text-[#6B46FF] dark:text-[#A259FF]">
+                      <div className="text-[#6B46FF] dark:text-[#8B5CF6]">
                         {product.icon}
                       </div>
                       <div className="flex-1 text-left">
@@ -379,7 +379,7 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
                     value={nicotineAmount}
                     onChange={(e) => setNicotineAmount(e.target.value)}
                     placeholder={getNicotineAmountPlaceholder()}
-                    className="w-full px-4 py-3 bg-gray-100/80 dark:bg-black/30 backdrop-blur-sm border border-gray-200/50 dark:border-white/10 rounded-2xl text-gray-900 dark:text-[#FFFFFF] placeholder-gray-500 dark:placeholder-[#8A8A8A] focus:outline-none focus:ring-2 focus:ring-[#6B46FF] dark:focus:ring-[#A259FF] focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 bg-gray-100/80 dark:bg-[#333333] border border-gray-200/50 dark:border-[#444444] rounded-2xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6B46FF] dark:focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-300"
                   />
                   <p className="text-xs text-gray-500 dark:text-[#8A8A8A] mt-1">
                     Enter the nicotine strength (e.g., 6mg, 12mg)
@@ -396,7 +396,7 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
                   placeholder="How was your day? Any thoughts or reflections..."
-                  className="w-full px-4 py-3 bg-gray-100/80 dark:bg-black/30 backdrop-blur-sm border border-gray-200/50 dark:border-white/10 rounded-2xl text-gray-900 dark:text-[#FFFFFF] placeholder-gray-500 dark:placeholder-[#8A8A8A] focus:outline-none focus:ring-2 focus:ring-[#6B46FF] dark:focus:ring-[#A259FF] focus:border-transparent resize-none transition-all duration-300"
+                  className="w-full px-4 py-3 bg-gray-100/80 dark:bg-[#333333] border border-gray-200/50 dark:border-[#444444] rounded-2xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6B46FF] dark:focus:ring-[#8B5CF6] focus:border-transparent resize-none transition-all duration-300"
                   rows={3}
                 />
               </div>
@@ -406,14 +406,14 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
                 <Button
                   variant="outline"
                   onClick={onClose}
-                  className="flex-1 border-gray-300 dark:border-white/20 text-gray-600 dark:text-[#B0B0B0] hover:bg-gray-100 dark:hover:bg-white/10 rounded-2xl bg-white/50 dark:bg-black/20 backdrop-blur-sm"
+                  className="flex-1 border-gray-300 dark:border-[#444444] text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#333333] rounded-2xl bg-white/50 dark:bg-[#1A1A1A]"
                 >
                   Cancel
                 </Button>
                 <Button
                   onClick={handleSave}
                   disabled={!isFormValid}
-                  className="flex-1 bg-gradient-to-r from-[#6B46FF] to-[#8B5CF6] dark:from-[#A259FF] dark:to-[#B85FFF] hover:from-[#5B3FD1] hover:to-[#7C3AED] dark:hover:from-[#B85FFF] dark:hover:to-[#A259FF] text-white rounded-2xl disabled:opacity-50 disabled:cursor-not-allowed shadow-lg dark:shadow-[0_0_24px_rgba(162,89,255,0.4)] border-0 transition-all duration-300"
+                  className="flex-1 bg-gradient-to-r from-[#6B46FF] to-[#8B5CF6] dark:bg-[#8B5CF6] hover:from-[#5B3FD1] hover:to-[#7C3AED] dark:hover:bg-[#7C3AED] text-white rounded-2xl disabled:opacity-50 disabled:cursor-not-allowed shadow-lg dark:shadow-none border-0 transition-all duration-300"
                 >
                   <Save className="w-4 h-4 mr-2" />
                   Save
