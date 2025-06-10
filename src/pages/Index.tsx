@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Moon, Sun, ArrowRight, Plus, Quote } from "lucide-react";
+import { Moon, Sun, Trophy, Plus, Quote } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ProgressDots } from "@/components/ui/progress-dots";
-import { AchievementCard } from "@/components/ui/achievement-card";
 import { BottomNavigation } from "@/components/ui/bottom-navigation";
 import { LogTodayModal, LogData } from "@/components/ui/log-today-modal";
+import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 const Index = () => {
@@ -14,6 +14,7 @@ const Index = () => {
   const [isLogModalOpen, setIsLogModalOpen] = useState(false);
   const [hasLoggedToday, setHasLoggedToday] = useState(false);
   const [showInspiration, setShowInspiration] = useState(false);
+  const navigate = useNavigate();
 
   // Update time every minute
   useEffect(() => {
@@ -52,14 +53,6 @@ const Index = () => {
     setHasLoggedToday(true);
     // In a real app, this would save to backend/storage
   };
-
-  // Sample achievements data
-  const achievements = [
-    { icon: "🌟", title: "Started Journey" },
-    { icon: "🎯", title: "Tracker Created" },
-    { icon: "🏁", title: "Quit Date Set" },
-    { icon: "💪", title: "4 Days Strong" },
-  ];
 
   // Daily quotes - could be rotated or AI-curated
   const dailyQuotes = [
@@ -102,21 +95,29 @@ const Index = () => {
           <h1 className="text-lg font-semibold text-[#2D2D2D] dark:text-white">
             NicotineFree
           </h1>
-          <button
-            onClick={toggleDarkMode}
-            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-          >
-            {isDark ? (
-              <Sun className="w-5 h-5 text-yellow-500" />
-            ) : (
-              <Moon className="w-5 h-5 text-gray-600" />
-            )}
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => navigate("/achievements")}
+              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            >
+              <Trophy className="w-5 h-5 text-[#5B8DEF]" />
+            </button>
+            <button
+              onClick={toggleDarkMode}
+              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            >
+              {isDark ? (
+                <Sun className="w-5 h-5 text-yellow-500" />
+              ) : (
+                <Moon className="w-5 h-5 text-gray-600" />
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="px-4 py-6 pb-24 space-y-6">
+      <div className="px-4 py-6 pb-24">
         {/* Combined Progress + Inspiration Card */}
         <Card className="bg-white dark:bg-gray-800 shadow-lg border-0 rounded-2xl">
           <CardHeader className="pb-4">
@@ -125,27 +126,28 @@ const Index = () => {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
-            {/* Main Progress Section */}
+            {/* Nicotine Reduction Message */}
             <div className="space-y-4">
               <div>
                 <p className="text-2xl font-bold text-[#5B8DEF] mb-2">
-                  Day 4 – You're building momentum!
+                  You've used 2.3 mg today – down 15% from your average.
                 </p>
                 <p className="text-sm text-gray-600 dark:text-gray-300">
-                  Each day gets easier as you build healthy habits.
+                  Great progress! You're successfully reducing your nicotine
+                  intake.
                 </p>
               </div>
 
-              {/* Dot Progress Bar */}
+              {/* Progress Visual - 7 dots for trend/streak */}
               <div className="flex items-center justify-between">
                 <span className="text-sm font-medium text-[#2D2D2D] dark:text-gray-300">
-                  Progress
+                  Reduction Progress
                 </span>
-                <ProgressDots totalDots={7} filledDots={4} />
+                <ProgressDots totalDots={7} filledDots={5} />
               </div>
             </div>
 
-            {/* Log Today Button */}
+            {/* Log Today's Use Button */}
             <div className="flex justify-center">
               <Button
                 onClick={() => setIsLogModalOpen(true)}
@@ -157,14 +159,14 @@ const Index = () => {
                 )}
               >
                 <Plus className="w-5 h-5 mr-2" />
-                {hasLoggedToday ? "Update Today's Log" : "Log Today"}
+                {hasLoggedToday ? "Update Today's Use" : "Log Today's Use"}
               </Button>
             </div>
 
-            {/* Divider */}
+            {/* Light Divider */}
             <div className="w-full h-px bg-gray-200 dark:bg-gray-600"></div>
 
-            {/* Integrated Daily Inspiration */}
+            {/* Daily Inspiration (at bottom of card) */}
             <div
               className={cn(
                 "text-center transition-all duration-1000",
@@ -185,29 +187,6 @@ const Index = () => {
             </div>
           </CardContent>
         </Card>
-
-        {/* Achievements Preview Row */}
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-[#2D2D2D] dark:text-white">
-              Recent Achievements
-            </h2>
-            <button className="text-[#5B8DEF] text-sm font-medium flex items-center gap-1">
-              See All
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-
-          <div className="flex gap-4 overflow-x-auto pb-2">
-            {achievements.map((achievement, index) => (
-              <AchievementCard
-                key={index}
-                icon={achievement.icon}
-                title={achievement.title}
-              />
-            ))}
-          </div>
-        </div>
       </div>
 
       {/* Log Today Modal */}
