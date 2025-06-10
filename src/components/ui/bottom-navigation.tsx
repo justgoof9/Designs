@@ -22,8 +22,8 @@ const BottomNavigation = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white/80 dark:bg-black/30 backdrop-blur-xl border-t border-gray-200/50 dark:border-white/10">
-      <div className="flex items-center justify-around py-2 px-4 max-w-md mx-auto">
+    <nav className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-white/80 dark:bg-[#1A1A1A] border-t border-gray-200/50 dark:border-[#333333] px-4 py-2 z-50">
+      <div className="flex justify-around items-center">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = location.pathname === item.path;
@@ -32,11 +32,12 @@ const BottomNavigation = () => {
             <button
               key={item.path}
               onClick={() => navigate(item.path)}
-              className={cn(
-                "flex flex-col items-center gap-1 py-2 px-3 transition-all duration-300 rounded-2xl",
-                isActive
-                  ? "text-[#6B46FF] dark:text-[#A259FF] bg-purple-50 dark:bg-white/10 backdrop-blur-sm"
-                  : "text-gray-500 dark:text-[#8A8A8A] hover:text-gray-700 dark:hover:text-[#B0B0B0] hover:bg-gray-100 dark:hover:bg-white/5",
+          className={cn(
+            "flex flex-col items-center gap-1 p-2 rounded-2xl transition-all duration-300",
+            isActive
+              ? "text-[#6B46FF] dark:text-[#8B5CF6] bg-purple-50 dark:bg-[#333333]"
+              : "text-gray-500 dark:text-gray-400 hover:text-[#6B46FF] dark:hover:text-[#8B5CF6] hover:bg-gray-100 dark:hover:bg-[#333333]",
+          )}
               )}
             >
               <Icon

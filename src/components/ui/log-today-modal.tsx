@@ -169,28 +169,27 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-xl flex items-center justify-center z-50 p-4 font-['Inter',sans-serif]">
-      <Card className="bg-white/90 dark:bg-black/40 backdrop-blur-2xl border border-gray-200/50 dark:border-white/20 shadow-2xl rounded-3xl w-full max-w-sm max-h-[90vh] overflow-y-auto">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-cyan-50/50 dark:from-purple-500/10 dark:to-cyan-500/10 pointer-events-none rounded-3xl" />
+    <div className="fixed inset-0 bg-black/60 dark:bg-black/80 flex items-center justify-center z-50 p-4 font-['Inter',sans-serif]">
+      <Card className="bg-white/90 dark:bg-[#1A1A1A] border border-gray-200/50 dark:border-[#333333] shadow-2xl dark:shadow-none rounded-3xl w-full max-w-sm max-h-[90vh] overflow-y-auto">
         {showAIEncouragement ? (
           // AI Encouragement Screen
           <CardContent className="p-8 text-center relative z-10">
             <div className="space-y-6">
-              <div className="p-6 bg-gradient-to-br from-[#6B46FF] to-[#8B5CF6] dark:from-[#A259FF] dark:to-[#B85FFF] rounded-3xl w-24 h-24 mx-auto flex items-center justify-center shadow-xl dark:shadow-[0_0_32px_rgba(162,89,255,0.6)]">
+              <div className="p-6 bg-gradient-to-br from-[#6B46FF] to-[#8B5CF6] dark:bg-[#8B5CF6] rounded-3xl w-24 h-24 mx-auto flex items-center justify-center shadow-xl dark:shadow-none">
                 <Brain className="w-12 h-12 text-white" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-[#FFFFFF] mb-3">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
                   AI Analysis
                 </h3>
-                <p className="text-gray-700 dark:text-[#B0B0B0] leading-relaxed">
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                   {getAIEncouragement()}
                 </p>
               </div>
               <div className="flex items-center justify-center gap-2">
-                <div className="w-3 h-3 bg-[#6B46FF] dark:bg-[#A259FF] rounded-full animate-pulse"></div>
-                <div className="w-3 h-3 bg-[#0B8FD9] dark:bg-[#4EDCFF] rounded-full animate-pulse delay-100"></div>
-                <div className="w-3 h-3 bg-[#00B976] dark:bg-[#00FF9D] rounded-full animate-pulse delay-200"></div>
+                <div className="w-3 h-3 bg-[#6B46FF] dark:bg-[#8B5CF6] rounded-full animate-pulse"></div>
+                <div className="w-3 h-3 bg-[#0B8FD9] dark:bg-[#3B82F6] rounded-full animate-pulse delay-100"></div>
+                <div className="w-3 h-3 bg-[#00B976] dark:bg-[#22C55E] rounded-full animate-pulse delay-200"></div>
               </div>
             </div>
           </CardContent>
@@ -199,7 +198,7 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
           <>
             <CardHeader className="pb-4 relative z-10">
               <div className="flex items-center justify-between">
-                <CardTitle className="text-lg font-bold text-gray-900 dark:text-[#FFFFFF]">
+                <CardTitle className="text-lg font-bold text-gray-900 dark:text-white">
                   Log Today's Use
                 </CardTitle>
                 <button
@@ -220,12 +219,12 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
             </CardHeader>
             <CardContent className="space-y-6 relative z-10">
               {/* Yesterday's Use */}
-              <div className="bg-gray-100/80 dark:bg-black/30 backdrop-blur-sm border border-gray-200/50 dark:border-white/10 p-4 rounded-2xl">
+              <div className="bg-gray-100/80 dark:bg-[#333333] border border-gray-200/50 dark:border-[#444444] p-4 rounded-2xl">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-gray-800 dark:text-[#EDEDED]">
+                  <span className="text-sm font-medium text-gray-800 dark:text-white">
                     Yesterday's use:
                   </span>
-                  <span className="text-lg font-bold text-[#6B46FF] dark:text-[#A259FF] drop-shadow-sm dark:drop-shadow-[0_0_8px_rgba(162,89,255,0.4)]">
+                  <span className="text-lg font-bold text-[#6B46FF] dark:text-[#8B5CF6]">
                     {yesterdaysUse}
                   </span>
                 </div>

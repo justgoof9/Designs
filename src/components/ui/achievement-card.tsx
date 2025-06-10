@@ -13,8 +13,10 @@ const AchievementCard = React.forwardRef<HTMLDivElement, AchievementCardProps>(
       <div
         ref={ref}
         className={cn(
-          "flex flex-col items-center gap-2 min-w-[80px] text-center",
-          className,
+          "w-20 h-20 rounded-2xl flex items-center justify-center text-2xl transition-all duration-300 border-2",
+          earned
+            ? "bg-gradient-to-br from-[#00B976] to-[#2DD4BF] dark:bg-[#22C55E] border-[#00B976] dark:border-[#22C55E] shadow-lg dark:shadow-none hover:scale-105"
+            : "bg-gray-200 dark:bg-[#333333] border-gray-300 dark:border-[#444444] opacity-60 grayscale",
         )}
         {...props}
       >
