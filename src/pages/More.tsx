@@ -66,14 +66,14 @@ const More = () => {
   }) => (
     <button
       onClick={onClick}
-      className="w-full p-4 flex items-center gap-4 hover:bg-gray-50 dark:hover:bg-[#333333] transition-all duration-300 rounded-2xl group"
+      className="w-full p-4 flex items-center gap-4 hover:bg-gray-50 dark:hover:bg-[#2A2038] transition-all duration-300 rounded-2xl group"
     >
-      <div className="p-2 bg-gradient-to-br from-purple-100 to-cyan-100 dark:bg-[#333333] rounded-2xl border border-purple-200/50 dark:border-[#444444] group-hover:shadow-md dark:group-hover:shadow-none transition-all duration-300">
+      <div className="p-2 bg-gradient-to-br from-purple-100 to-cyan-100 dark:bg-[#2A2038] rounded-2xl border border-purple-200/50 dark:border-[#3A2A48] group-hover:shadow-md transition-all duration-300">
         <Icon className="w-5 h-5 text-[#6B46FF] dark:text-[#8B5CF6]" />
       </div>
       <div className="flex-1 text-left">
-        <h3 className="font-bold text-gray-900 dark:text-[#FFFFFF]">{label}</h3>
-        <p className="text-sm text-gray-600 dark:text-[#B0B0B0]">{subtitle}</p>
+        <h3 className="font-bold text-gray-900 dark:text-white">{label}</h3>
+        <p className="text-sm text-gray-600 dark:text-gray-300">{subtitle}</p>
       </div>
       <ChevronRight className="w-5 h-5 text-gray-400 dark:text-gray-500 group-hover:text-[#6B46FF] dark:group-hover:text-[#8B5CF6] transition-colors duration-300" />
     </button>
@@ -82,21 +82,21 @@ const More = () => {
   return (
     <div
       className={cn(
-        "min-h-screen bg-gradient-to-br from-[#F8FAFF] to-[#F0F4FF] dark:bg-[#000000] transition-colors duration-500 font-['Inter',sans-serif]",
+        "min-h-screen bg-gradient-to-br from-[#F8FAFF] to-[#F0F4FF] dark:bg-gradient-to-br dark:from-[#0F0B1C] dark:to-[#1A0D2E] transition-colors duration-500 font-['Inter',sans-serif]",
         "max-w-md mx-auto relative",
       )}
       style={{ maxWidth: "390px", minHeight: "844px" }}
     >
       {/* Header */}
-      <div className="bg-white/70 dark:bg-[#1A1A1A] border-b border-gray-200/50 dark:border-[#333333] px-4 py-4">
+      <div className="bg-white/70 dark:bg-[#1A1426]/80 backdrop-blur-lg border-b border-gray-200/50 dark:border-[#2A2038] px-4 py-4">
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate("/")}
             className="p-2 rounded-2xl hover:bg-gray-100 dark:hover:bg-white/10 transition-all duration-300"
           >
-            <ArrowLeft className="w-5 h-5 text-gray-500 dark:text-[#8A8A8A]" />
+            <ArrowLeft className="w-5 h-5 text-gray-500 dark:text-gray-400" />
           </button>
-          <h1 className="text-lg font-bold text-gray-900 dark:text-[#FFFFFF]">
+          <h1 className="text-lg font-bold text-gray-900 dark:text-white">
             More
           </h1>
         </div>
@@ -105,17 +105,17 @@ const More = () => {
       {/* Content */}
       <div className="px-4 py-6 pb-24 space-y-6">
         {/* Profile Card */}
-        <Card className="bg-white/80 dark:bg-[#1A1A1A] border border-gray-200/50 dark:border-[#333333] shadow-xl dark:shadow-none rounded-3xl overflow-hidden">
-          <CardContent className="p-6 relative z-10">
+        <Card className="bg-white/80 dark:bg-[#1A1426]/60 backdrop-blur-xl border border-gray-200/50 dark:border-[#2A2038] shadow-xl rounded-3xl overflow-hidden">
+          <CardContent className="p-6">
             <div className="flex items-center gap-4">
-              <div className="w-16 h-16 bg-gradient-to-br from-[#6B46FF] to-[#8B5CF6] dark:from-[#A259FF] dark:to-[#B85FFF] rounded-2xl flex items-center justify-center shadow-lg dark:shadow-[0_0_20px_rgba(162,89,255,0.4)]">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#8B5CF6] to-[#A855F7] rounded-2xl flex items-center justify-center shadow-lg">
                 <User className="w-8 h-8 text-white" />
               </div>
               <div>
-                <h3 className="font-bold text-xl text-gray-900 dark:text-[#FFFFFF]">
+                <h3 className="font-bold text-xl text-gray-900 dark:text-white">
                   Welcome Back!
                 </h3>
-                <p className="text-gray-700 dark:text-[#B0B0B0] text-sm">
+                <p className="text-gray-700 dark:text-gray-300 text-sm">
                   Keep up the great work on your quit journey
                 </p>
               </div>
@@ -126,11 +126,11 @@ const More = () => {
         {/* Menu Sections */}
         {menuSections.map((section, index) => (
           <div key={index} className="space-y-3">
-            <h2 className="text-lg font-bold text-gray-900 dark:text-[#FFFFFF] px-2">
+            <h2 className="text-lg font-bold text-gray-900 dark:text-white px-2">
               {section.title}
             </h2>
-            <Card className="bg-white/80 dark:bg-[#1A1A1A] border border-gray-200/50 dark:border-[#333333] shadow-xl dark:shadow-none rounded-3xl overflow-hidden">
-              <CardContent className="p-2 relative z-10">
+            <Card className="bg-white/80 dark:bg-[#1A1426]/60 backdrop-blur-xl border border-gray-200/50 dark:border-[#2A2038] shadow-xl rounded-3xl overflow-hidden">
+              <CardContent className="p-2">
                 <div className="space-y-1">
                   {section.items.map((item, itemIndex) => (
                     <MenuItem
@@ -148,24 +148,24 @@ const More = () => {
         ))}
 
         {/* App Info */}
-        <Card className="bg-white/80 dark:bg-[#1A1A1A] border border-gray-200/50 dark:border-[#333333] shadow-xl dark:shadow-none rounded-3xl overflow-hidden">
-          <CardContent className="p-6 text-center relative z-10">
+        <Card className="bg-white/80 dark:bg-[#1A1426]/60 backdrop-blur-xl border border-gray-200/50 dark:border-[#2A2038] shadow-xl rounded-3xl overflow-hidden">
+          <CardContent className="p-6 text-center">
             <div className="text-5xl mb-3">🚭</div>
-            <h3 className="font-bold text-lg text-gray-900 dark:text-[#FFFFFF] mb-2">
+            <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-2">
               NicotineFree
             </h3>
-            <p className="text-sm text-gray-700 dark:text-[#B0B0B0] mb-3">
+            <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
               Your Quit Journey Tracker
             </p>
-            <p className="text-xs text-gray-500 dark:text-[#8A8A8A]">
+            <p className="text-xs text-gray-500 dark:text-gray-400">
               Version 1.0.0
             </p>
           </CardContent>
         </Card>
 
         {/* Emergency Support */}
-        <Card className="bg-red-50/90 dark:bg-[#2A1A1A] border border-red-200/50 dark:border-[#444333] rounded-3xl overflow-hidden">
-          <CardContent className="p-6 text-center relative z-10">
+        <Card className="bg-red-50/90 dark:bg-[#2A1426]/60 backdrop-blur-xl border border-red-200/50 dark:border-[#3A2A38] rounded-3xl overflow-hidden">
+          <CardContent className="p-6 text-center">
             <div className="text-4xl mb-3">🆘</div>
             <h3 className="font-bold text-lg text-red-700 dark:text-red-400 mb-2">
               Need Support?
