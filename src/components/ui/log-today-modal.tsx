@@ -208,7 +208,7 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
                   <X className="w-5 h-5 text-gray-500 dark:text-[#8A8A8A]" />
                 </button>
               </div>
-              <p className="text-sm text-gray-600 dark:text-[#B0B0B0]">
+              <p className="text-sm text-gray-600 dark:text-gray-300">
                 {new Date().toLocaleDateString("en-US", {
                   weekday: "long",
                   year: "numeric",
@@ -232,7 +232,7 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
 
               {/* Usage Comparison */}
               <div>
-                <h3 className="font-bold text-gray-900 dark:text-[#FFFFFF] mb-3">
+                <h3 className="font-bold text-gray-900 dark:text-white mb-3">
                   Compared to yesterday, did you:
                 </h3>
                 <div className="space-y-3">
@@ -251,10 +251,10 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
                         {option.icon}
                       </div>
                       <div className="flex-1 text-left">
-                        <p className="font-bold text-gray-900 dark:text-[#FFFFFF]">
+                        <p className="font-bold text-gray-900 dark:text-white">
                           {option.label}
                         </p>
-                        <p className="text-xs text-gray-600 dark:text-[#B0B0B0]">
+                        <p className="text-xs text-gray-600 dark:text-gray-300">
                           {option.description}
                         </p>
                       </div>
@@ -265,9 +265,8 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
 
               {/* Mood Selection */}
               <div>
-                <h3 className="font-bold text-gray-900 dark:text-[#FFFFFF] mb-3">
-                  How are you feeling?{" "}
-                  <span className="text-red-500 dark:text-[#FF6B6B]">*</span>
+                <h3 className="font-bold text-gray-900 dark:text-white mb-3">
+                  How are you feeling? <span className="text-red-500">*</span>
                 </h3>
                 <div className="grid grid-cols-2 gap-3">
                   {moodOptions.map((mood) => (
@@ -282,7 +281,7 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
                       )}
                     >
                       <div className="text-2xl mb-1">{mood.emoji}</div>
-                      <div className="text-sm font-bold text-gray-900 dark:text-[#FFFFFF]">
+                      <div className="text-sm font-bold text-gray-900 dark:text-white">
                         {mood.label}
                       </div>
                     </button>
@@ -292,9 +291,8 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
 
               {/* Craving Level */}
               <div>
-                <h3 className="font-bold text-gray-900 dark:text-[#FFFFFF] mb-3">
-                  Craving Level{" "}
-                  <span className="text-red-500 dark:text-[#FF6B6B]">*</span>
+                <h3 className="font-bold text-gray-900 dark:text-white mb-3">
+                  Craving Level <span className="text-red-500">*</span>
                 </h3>
                 <div className="space-y-2">
                   {cravingLevels.map((level) => (
@@ -311,7 +309,7 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
                       <div
                         className={cn("w-4 h-4 rounded-full", level.color)}
                       />
-                      <span className="font-bold text-gray-900 dark:text-[#FFFFFF]">
+                      <span className="font-bold text-gray-900 dark:text-white">
                         {level.label}
                       </span>
                     </button>
@@ -321,7 +319,7 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
 
               {/* Nicotine Product Used (Optional) */}
               <div>
-                <h3 className="font-bold text-gray-900 dark:text-[#FFFFFF] mb-3">
+                <h3 className="font-bold text-gray-900 dark:text-white mb-3">
                   What did you use? (Optional)
                 </h3>
                 <div className="space-y-3">
@@ -344,10 +342,10 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
                         {product.icon}
                       </div>
                       <div className="flex-1 text-left">
-                        <p className="font-bold text-gray-900 dark:text-[#FFFFFF]">
+                        <p className="font-bold text-gray-900 dark:text-white">
                           {product.label}
                         </p>
-                        <p className="text-xs text-gray-600 dark:text-[#B0B0B0]">
+                        <p className="text-xs text-gray-600 dark:text-gray-300">
                           {product.description}
                         </p>
                       </div>
@@ -359,16 +357,13 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
               {/* Nicotine Amount */}
               {selectedProduct && (
                 <div>
-                  <h3 className="font-bold text-gray-900 dark:text-[#FFFFFF] mb-3">
+                  <h3 className="font-bold text-gray-900 dark:text-white mb-3">
                     Nicotine Amount
                     {isNicotineAmountRequired && (
-                      <span className="text-red-500 dark:text-[#FF6B6B]">
-                        {" "}
-                        *
-                      </span>
+                      <span className="text-red-500"> *</span>
                     )}
                     {!isNicotineAmountRequired && (
-                      <span className="text-gray-500 dark:text-[#8A8A8A]">
+                      <span className="text-gray-500 dark:text-gray-400">
                         {" "}
                         (Optional)
                       </span>
@@ -381,7 +376,7 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
                     placeholder={getNicotineAmountPlaceholder()}
                     className="w-full px-4 py-3 bg-gray-100/80 dark:bg-[#333333] border border-gray-200/50 dark:border-[#444444] rounded-2xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6B46FF] dark:focus:ring-[#8B5CF6] focus:border-transparent transition-all duration-300"
                   />
-                  <p className="text-xs text-gray-500 dark:text-[#8A8A8A] mt-1">
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                     Enter the nicotine strength (e.g., 6mg, 12mg)
                   </p>
                 </div>
@@ -389,7 +384,7 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
 
               {/* Note */}
               <div>
-                <h3 className="font-bold text-gray-900 dark:text-[#FFFFFF] mb-3">
+                <h3 className="font-bold text-gray-900 dark:text-white mb-3">
                   Quick Note (Optional)
                 </h3>
                 <textarea
@@ -425,7 +420,7 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
                 selectedProduct &&
                 isNicotineAmountRequired &&
                 !nicotineAmount.trim() && (
-                  <div className="bg-red-100 dark:bg-red-500/20 backdrop-blur-sm border border-red-300 dark:border-red-500/30 rounded-2xl p-3">
+                  <div className="bg-red-100 dark:bg-[#2A1A1A] border border-red-300 dark:border-[#444333] rounded-2xl p-3">
                     <p className="text-sm text-red-700 dark:text-red-400">
                       Nicotine amount is required for{" "}
                       {selectedProduct === "vape"
