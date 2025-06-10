@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { X, Save } from "lucide-react";
+import { X, Save, Cigarette, Wind, Pill } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface LogTodayModalProps {
@@ -14,6 +14,8 @@ interface LogData {
   mood: string;
   cravingLevel: string;
   note: string;
+  nicotineProduct?: string;
+  nicotineAmount?: string;
 }
 
 const LogTodayModal: React.FC<LogTodayModalProps> = ({
@@ -24,6 +26,8 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
   const [selectedMood, setSelectedMood] = useState<string>("");
   const [selectedCraving, setSelectedCraving] = useState<string>("");
   const [note, setNote] = useState<string>("");
+  const [selectedProduct, setSelectedProduct] = useState<string>("");
+  const [nicotineAmount, setNicotineAmount] = useState<string>("");
 
   const moodOptions = [
     { emoji: "😊", label: "Great", value: "great" },
@@ -39,18 +43,65 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
     { label: "High", value: "high", color: "bg-red-500" },
   ];
 
+  const nicotineProducts = [
+    {
+      id: "cigarette",
+      label: "Cigarette",
+      icon: <Cigarette className="w-6 h-6" />,
+      description: "Traditional cigarettes",
+    },
+    {
+      id: "vape",
+      label: "Vape",
+      icon: <Wind className="w-6 h-6" />,
+      description: "E-cigarettes/vaping",
+    },
+    {
+      id: "pouch",
+      label: "Nicotine Pouch",
+      icon: <Pill className="w-6 h-6" />,
+      description: "Pouches/gum/patches",
+    },
+  ];
+
+  const isNicotineAmountRequired =
+    selectedProduct === "vape" || selectedProduct === "pouch";
+  const isFormValid =
+    selectedMood &&
+    selectedCraving &&
+    (!selectedProduct ||
+      (selectedProduct &&
+        (!isNicotineAmountRequired || nicotineAmount.trim())));
+
   const handleSave = () => {
-    if (selectedMood && selectedCraving) {
+    if (isFormValid) {
       onSave({
         mood: selectedMood,
         cravingLevel: selectedCraving,
         note,
+        nicotineProduct: selectedProduct || undefined,
+        nicotineAmount: nicotineAmount.trim() || undefined,
       });
       // Reset form
       setSelectedMood("");
       setSelectedCraving("");
       setNote("");
+      setSelectedProduct("");
+      setNicotineAmount("");
       onClose();
+    }
+  };
+
+  const getNicotineAmountPlaceholder = () => {
+    switch (selectedProduct) {
+      case "cigarette":
+        return "e.g., 12mg (optional)";
+      case "vape":
+        return "e.g., 6mg, 12mg, 18mg";
+      case "pouch":
+        return "e.g., 2mg, 4mg, 6mg";
+      default:
+        return "Enter nicotine amount";
     }
   };
 
@@ -58,7 +109,7 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <Card className="bg-white dark:bg-gray-800 shadow-xl border-0 rounded-2xl w-full max-w-sm max-h-[80vh] overflow-y-auto">
+      <Card className="bg-white dark:bg-gray-800 shadow-xl border-0 rounded-2xl w-full max-w-sm max-h-[90vh] overflow-y-auto">
         <CardHeader className="pb-4">
           <div className="flex items-center justify-between">
             <CardTitle className="text-lg font-semibold text-[#2D2D2D] dark:text-white">
@@ -84,7 +135,7 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
           {/* Mood Selection */}
           <div>
             <h3 className="font-semibold text-[#2D2D2D] dark:text-white mb-3">
-              How are you feeling?
+              How are you feeling? <span className="text-red-500">*</span>
             </h3>
             <div className="grid grid-cols-2 gap-3">
               {moodOptions.map((mood) => (
@@ -110,7 +161,7 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
           {/* Craving Level */}
           <div>
             <h3 className="font-semibold text-[#2D2D2D] dark:text-white mb-3">
-              Craving Level
+              Craving Level <span className="text-red-500">*</span>
             </h3>
             <div className="space-y-2">
               {cravingLevels.map((level) => (
@@ -132,6 +183,66 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
               ))}
             </div>
           </div>
+
+          {/* Nicotine Product Used (Optional) */}
+          <div>
+            <h3 className="font-semibold text-[#2D2D2D] dark:text-white mb-3">
+              Did you use any nicotine product? (Optional)
+            </h3>
+            <div className="space-y-3">
+              {nicotineProducts.map((product) => (
+                <button
+                  key={product.id}
+                  onClick={() =>
+                    setSelectedProduct(
+                      selectedProduct === product.id ? "" : product.id,
+                    )
+                  }
+                  className={cn(
+                    "w-full p-3 rounded-xl border-2 transition-all duration-200 flex items-center gap-3",
+                    selectedProduct === product.id
+                      ? "border-[#5B8DEF] bg-[#5B8DEF]/10"
+                      : "border-gray-200 dark:border-gray-600 hover:border-gray-300",
+                  )}
+                >
+                  <div className="text-[#5B8DEF]">{product.icon}</div>
+                  <div className="flex-1 text-left">
+                    <p className="font-medium text-[#2D2D2D] dark:text-white">
+                      {product.label}
+                    </p>
+                    <p className="text-xs text-gray-600 dark:text-gray-300">
+                      {product.description}
+                    </p>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Nicotine Amount */}
+          {selectedProduct && (
+            <div>
+              <h3 className="font-semibold text-[#2D2D2D] dark:text-white mb-3">
+                Nicotine Amount
+                {isNicotineAmountRequired && (
+                  <span className="text-red-500"> *</span>
+                )}
+                {!isNicotineAmountRequired && (
+                  <span className="text-gray-500"> (Optional)</span>
+                )}
+              </h3>
+              <input
+                type="text"
+                value={nicotineAmount}
+                onChange={(e) => setNicotineAmount(e.target.value)}
+                placeholder={getNicotineAmountPlaceholder()}
+                className="w-full px-4 py-3 bg-[#F4F6FA] dark:bg-gray-700 rounded-xl border-0 text-[#2D2D2D] dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#5B8DEF]"
+              />
+              <p className="text-xs text-gray-500 mt-1">
+                Enter the nicotine strength (e.g., 6mg, 12mg)
+              </p>
+            </div>
+          )}
 
           {/* Note */}
           <div>
@@ -158,13 +269,26 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
             </Button>
             <Button
               onClick={handleSave}
-              disabled={!selectedMood || !selectedCraving}
-              className="flex-1 bg-[#5B8DEF] hover:bg-[#5B8DEF]/90 text-white rounded-xl"
+              disabled={!isFormValid}
+              className="flex-1 bg-[#5B8DEF] hover:bg-[#5B8DEF]/90 text-white rounded-xl disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Save className="w-4 h-4 mr-2" />
               Save
             </Button>
           </div>
+
+          {/* Validation Message */}
+          {!isFormValid &&
+            selectedProduct &&
+            isNicotineAmountRequired &&
+            !nicotineAmount.trim() && (
+              <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-3">
+                <p className="text-sm text-red-600 dark:text-red-400">
+                  Nicotine amount is required for{" "}
+                  {selectedProduct === "vape" ? "vapes" : "nicotine pouches"}
+                </p>
+              </div>
+            )}
         </CardContent>
       </Card>
     </div>
