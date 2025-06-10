@@ -21,8 +21,8 @@ const ProgressDots = React.forwardRef<HTMLDivElement, ProgressDotsProps>(
             className={cn(
               "w-3 h-3 rounded-full transition-all duration-500",
               index < filledDots
-                ? "bg-gradient-to-r from-[#00B976] to-[#2DD4BF] dark:bg-[#22C55E] scale-110"
-                : "bg-gray-300 dark:bg-[#444444] border-2 border-gray-400 dark:border-[#555555]",
+                ? "bg-gradient-to-r from-[#8B5CF6] to-[#A855F7] dark:bg-gradient-to-r dark:from-[#8B5CF6] dark:to-[#A855F7] scale-110"
+                : "bg-gray-300 dark:bg-[#3A2A48] border-2 border-gray-400 dark:border-[#4A3A58]",
             )}
           />
         ))}
