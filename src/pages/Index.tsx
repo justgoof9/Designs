@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Moon, Sun, ArrowRight } from "lucide-react";
+import { Moon, Sun, ArrowRight, Plus } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ProgressDots } from "@/components/ui/progress-dots";
 import { AchievementCard } from "@/components/ui/achievement-card";
 import { BottomNavigation } from "@/components/ui/bottom-navigation";
+import { LogTodayModal, LogData } from "@/components/ui/log-today-modal";
 import { cn } from "@/lib/utils";
 
 const Index = () => {
   const [isDark, setIsDark] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [isLogModalOpen, setIsLogModalOpen] = useState(false);
+  const [hasLoggedToday, setHasLoggedToday] = useState(false);
 
   // Update time every minute
   useEffect(() => {
@@ -32,6 +35,13 @@ const Index = () => {
       minute: "2-digit",
       hour12: false,
     });
+  };
+
+  // Handle log save
+  const handleLogSave = (data: LogData) => {
+    console.log("Log saved:", data);
+    setHasLoggedToday(true);
+    // In a real app, this would save to backend/storage
   };
 
   // Sample achievements data
@@ -111,6 +121,20 @@ const Index = () => {
           </CardContent>
         </Card>
 
+        {/* Log Today Button */}
+        <Button
+          onClick={() => setIsLogModalOpen(true)}
+          className={cn(
+            "w-full rounded-xl py-4 text-white font-medium transition-all duration-200",
+            hasLoggedToday
+              ? "bg-[#7ED6A3] hover:bg-[#7ED6A3]/90"
+              : "bg-[#5B8DEF] hover:bg-[#5B8DEF]/90",
+          )}
+        >
+          <Plus className="w-5 h-5 mr-2" />
+          {hasLoggedToday ? "Update Today's Log" : "Log Today"}
+        </Button>
+
         {/* Achievements Section */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
@@ -176,6 +200,13 @@ const Index = () => {
           </CardContent>
         </Card>
       </div>
+
+      {/* Log Today Modal */}
+      <LogTodayModal
+        isOpen={isLogModalOpen}
+        onClose={() => setIsLogModalOpen(false)}
+        onSave={handleLogSave}
+      />
 
       {/* Bottom Navigation */}
       <BottomNavigation />

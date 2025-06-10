@@ -1,7 +1,15 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BottomNavigation } from "@/components/ui/bottom-navigation";
-import { ArrowLeft, TrendingUp, Clock, DollarSign, Heart } from "lucide-react";
+import {
+  ArrowLeft,
+  TrendingUp,
+  Clock,
+  DollarSign,
+  Heart,
+  Brain,
+  Quote,
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
@@ -35,6 +43,17 @@ const Insights = () => {
     },
   ];
 
+  // Mock data for progress visualization
+  const progressData = [
+    { day: 1, cravings: 8, mood: 3 },
+    { day: 2, cravings: 7, mood: 4 },
+    { day: 3, cravings: 6, mood: 4 },
+    { day: 4, cravings: 5, mood: 5 },
+    { day: 5, cravings: 4, mood: 6 },
+    { day: 6, cravings: 3, mood: 7 },
+    { day: 7, cravings: 2, mood: 8 },
+  ];
+
   return (
     <div
       className={cn(
@@ -53,25 +72,13 @@ const Insights = () => {
             <ArrowLeft className="w-5 h-5 text-gray-600 dark:text-gray-400" />
           </button>
           <h1 className="text-lg font-semibold text-[#2D2D2D] dark:text-white">
-            Insights
+            Your Insights
           </h1>
         </div>
       </div>
 
       {/* Content */}
       <div className="px-4 py-6 pb-24 space-y-6">
-        {/* Overview Card */}
-        <Card className="bg-gradient-to-r from-[#5B8DEF] to-[#70D6FF] text-white shadow-lg border-0 rounded-2xl">
-          <CardContent className="p-6 text-center">
-            <div className="text-4xl mb-3">📊</div>
-            <h3 className="font-semibold text-xl mb-2">Your Quit Journey</h3>
-            <p className="text-white/90 text-sm leading-relaxed">
-              Track your progress and see how far you've come on your smoke-free
-              journey.
-            </p>
-          </CardContent>
-        </Card>
-
         {/* Stats Grid */}
         <div className="grid grid-cols-2 gap-4">
           {stats.map((stat, index) => (
@@ -94,6 +101,110 @@ const Insights = () => {
             </Card>
           ))}
         </div>
+
+        {/* Progress Graph Card */}
+        <Card className="bg-white dark:bg-gray-800 shadow-lg border-0 rounded-2xl">
+          <CardHeader>
+            <CardTitle className="text-lg font-semibold text-[#2D2D2D] dark:text-white">
+              Progress Trends
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {/* Simple visualization for cravings trend */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-medium text-[#2D2D2D] dark:text-white">
+                    Craving Intensity
+                  </span>
+                  <span className="text-xs text-gray-500">7 days</span>
+                </div>
+                <div className="flex items-end gap-1 h-16">
+                  {progressData.map((data, index) => (
+                    <div
+                      key={index}
+                      className="flex-1 bg-[#5B8DEF] rounded-t-sm opacity-80"
+                      style={{ height: `${(data.cravings / 10) * 100}%` }}
+                    />
+                  ))}
+                </div>
+                <div className="flex justify-between mt-1">
+                  <span className="text-xs text-gray-500">Day 1</span>
+                  <span className="text-xs text-gray-500">Day 7</span>
+                </div>
+              </div>
+
+              {/* Mood trend */}
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-medium text-[#2D2D2D] dark:text-white">
+                    Mood Level
+                  </span>
+                  <span className="text-xs text-gray-500">Improving ↗️</span>
+                </div>
+                <div className="flex items-end gap-1 h-16">
+                  {progressData.map((data, index) => (
+                    <div
+                      key={index}
+                      className="flex-1 bg-[#7ED6A3] rounded-t-sm opacity-80"
+                      style={{ height: `${(data.mood / 10) * 100}%` }}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* AI Analysis Card */}
+        <Card className="bg-gradient-to-r from-[#5B8DEF] to-[#70D6FF] text-white shadow-lg border-0 rounded-2xl">
+          <CardContent className="p-6">
+            <div className="flex items-start gap-4">
+              <div className="p-3 bg-white/20 rounded-full">
+                <Brain className="w-6 h-6 text-white" />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-semibold text-lg mb-2">AI Reflection</h3>
+                <p className="text-white/90 text-sm leading-relaxed mb-3">
+                  You're at the beginning of your journey! Based on similar
+                  success stories, the first week is crucial. Your commitment to
+                  tracking shows great dedication.
+                </p>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-white/60 rounded-full animate-pulse"></div>
+                  <div className="w-2 h-2 bg-white/40 rounded-full animate-pulse delay-100"></div>
+                  <div className="w-2 h-2 bg-white/20 rounded-full animate-pulse delay-200"></div>
+                  <span className="text-white/70 text-xs ml-2">
+                    Analyzing patterns...
+                  </span>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Daily Quote */}
+        <Card className="bg-white dark:bg-gray-800 shadow-lg border-0 rounded-2xl">
+          <CardContent className="p-6">
+            <div className="flex items-start gap-4">
+              <div className="p-3 bg-[#5B8DEF]/10 rounded-full">
+                <Quote className="w-6 h-6 text-[#5B8DEF]" />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-semibold text-[#2D2D2D] dark:text-white mb-2">
+                  Daily Inspiration
+                </h3>
+                <blockquote className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed italic mb-3">
+                  "Every small step forward is a victory. The courage to begin
+                  is often the hardest part, and you've already taken it."
+                </blockquote>
+                <p className="text-xs text-gray-500">
+                  — Your quit journey companion
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Health Benefits Timeline */}
         <Card className="bg-white dark:bg-gray-800 shadow-lg border-0 rounded-2xl">
