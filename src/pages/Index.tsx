@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Moon, Sun, ArrowRight, Plus } from "lucide-react";
+import { Moon, Sun, ArrowRight, Plus, Sunrise, Brain } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ProgressDots } from "@/components/ui/progress-dots";
@@ -13,6 +13,7 @@ const Index = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isLogModalOpen, setIsLogModalOpen] = useState(false);
   const [hasLoggedToday, setHasLoggedToday] = useState(false);
+  const [showInspiration, setShowInspiration] = useState(false);
 
   // Update time every minute
   useEffect(() => {
@@ -20,6 +21,14 @@ const Index = () => {
       setCurrentTime(new Date());
     }, 60000);
     return () => clearInterval(timer);
+  }, []);
+
+  // Fade in inspiration card on load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowInspiration(true);
+    }, 500);
+    return () => clearTimeout(timer);
   }, []);
 
   // Toggle dark mode
@@ -50,6 +59,17 @@ const Index = () => {
     { icon: "🎯", title: "Tracker Created" },
     { icon: "🏁", title: "Quit Date Set" },
   ];
+
+  // Daily quotes - could be rotated or AI-curated
+  const dailyQuotes = [
+    "Recovery is not one big step. It's lots of little steps.",
+    "Every small step forward is a victory worth celebrating.",
+    "The courage to begin is often the hardest part, and you've already taken it.",
+    "Progress, not perfection, is the goal of your journey.",
+    "Each day you choose health, you're choosing your future self.",
+  ];
+
+  const todaysQuote = dailyQuotes[0]; // In a real app, this could rotate daily
 
   return (
     <div
@@ -106,17 +126,18 @@ const Index = () => {
           <CardContent className="space-y-4">
             <div>
               <p className="text-2xl font-bold text-[#5B8DEF] mb-2">
-                Day 0 – Starting Your Journey
+                Day 4 – You're building momentum!
               </p>
               <p className="text-sm text-gray-600 dark:text-gray-300">
-                Every journey begins with a single step. You've got this!
+                Amazing progress! Each day gets easier as you build healthy
+                habits.
               </p>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-sm font-medium text-[#2D2D2D] dark:text-gray-300">
                 Progress
               </span>
-              <ProgressDots totalDots={7} filledDots={1} />
+              <ProgressDots totalDots={7} filledDots={4} />
             </div>
           </CardContent>
         </Card>
@@ -125,7 +146,7 @@ const Index = () => {
         <Button
           onClick={() => setIsLogModalOpen(true)}
           className={cn(
-            "w-full rounded-xl py-4 text-white font-medium transition-all duration-200",
+            "w-full rounded-xl py-3 text-white font-medium transition-all duration-200",
             hasLoggedToday
               ? "bg-[#7ED6A3] hover:bg-[#7ED6A3]/90"
               : "bg-[#5B8DEF] hover:bg-[#5B8DEF]/90",
@@ -135,28 +156,35 @@ const Index = () => {
           {hasLoggedToday ? "Update Today's Log" : "Log Today"}
         </Button>
 
-        {/* Achievements Section */}
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-[#2D2D2D] dark:text-white">
-              Recent Achievements
-            </h2>
-            <button className="text-[#5B8DEF] text-sm font-medium flex items-center gap-1">
-              See All
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
+        {/* Section Divider */}
+        <div className="w-full h-px bg-gray-200 dark:bg-gray-700"></div>
 
-          <div className="flex gap-4 overflow-x-auto pb-2">
-            {achievements.map((achievement, index) => (
-              <AchievementCard
-                key={index}
-                icon={achievement.icon}
-                title={achievement.title}
-              />
-            ))}
-          </div>
-        </div>
+        {/* Daily Inspiration Card */}
+        <Card
+          className={cn(
+            "bg-[#EDF6FF] dark:bg-[#1a2332] shadow-lg border-0 rounded-2xl transition-all duration-1000",
+            showInspiration
+              ? "opacity-100 transform translate-y-0"
+              : "opacity-0 transform translate-y-4",
+          )}
+        >
+          <CardContent className="p-6 text-center">
+            <div className="flex justify-center mb-4">
+              <div className="p-3 bg-[#5B8DEF]/10 rounded-full">
+                <Sunrise className="w-8 h-8 text-[#5B8DEF]" />
+              </div>
+            </div>
+            <h3 className="font-semibold text-lg text-[#2D2D2D] dark:text-white mb-3">
+              Daily Inspiration
+            </h3>
+            <blockquote className="text-[#2D2D2D] dark:text-white text-base leading-relaxed italic font-medium">
+              "{todaysQuote}"
+            </blockquote>
+          </CardContent>
+        </Card>
+
+        {/* Section Divider */}
+        <div className="w-full h-px bg-gray-200 dark:bg-gray-700"></div>
 
         {/* Daily Tips Card */}
         <Card className="bg-white dark:bg-gray-800 shadow-lg border-0 rounded-2xl">
@@ -188,14 +216,40 @@ const Index = () => {
           </CardContent>
         </Card>
 
-        {/* Additional Motivation Card */}
+        {/* Section Divider */}
+        <div className="w-full h-px bg-gray-200 dark:bg-gray-700"></div>
+
+        {/* Achievements Section */}
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg font-semibold text-[#2D2D2D] dark:text-white">
+              Recent Achievements
+            </h2>
+            <button className="text-[#5B8DEF] text-sm font-medium flex items-center gap-1">
+              See All
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+
+          <div className="flex gap-4 overflow-x-auto pb-2">
+            {achievements.map((achievement, index) => (
+              <AchievementCard
+                key={index}
+                icon={achievement.icon}
+                title={achievement.title}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Final Motivation Section */}
         <Card className="bg-gradient-to-r from-[#5B8DEF] to-[#70D6FF] text-white shadow-lg border-0 rounded-2xl">
           <CardContent className="p-6 text-center">
             <div className="text-3xl mb-3">🎯</div>
             <h3 className="font-semibold text-lg mb-2">You're in Control</h3>
             <p className="text-white/90 text-sm leading-relaxed">
-              Remember why you started this journey. Each day smoke-free is a
-              victory worth celebrating.
+              Four days strong! You're proving to yourself that you can do this.
+              Keep building on this momentum.
             </p>
           </CardContent>
         </Card>
