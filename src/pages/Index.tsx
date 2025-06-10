@@ -88,40 +88,40 @@ const Index = () => {
       icon: Calendar,
       label: "Days to 0mg",
       value: "17 days left",
-      color: "text-[#6B46FF] dark:text-[#A259FF]", // Darker purple for light mode
+      color: "text-[#6B46FF] dark:text-[#8B5CF6]",
     },
     {
       icon: Cigarette,
       label: "Units Avoided",
       value: "12 cigarettes / 8 vapes",
-      color: "text-[#00B976] dark:text-[#00FF9D]", // Darker green for light mode
+      color: "text-[#00B976] dark:text-[#22C55E]",
     },
     {
       icon: DollarSign,
       label: "Money Saved",
       value: "$32.50",
-      color: "text-[#00B976] dark:text-[#00FF9D]", // Darker green for light mode
+      color: "text-[#00B976] dark:text-[#22C55E]",
     },
     {
       icon: Clock,
       label: "Time Saved",
       value: "3 hrs 45 mins",
-      color: "text-[#0B8FD9] dark:text-[#4EDCFF]", // Darker blue for light mode
+      color: "text-[#0B8FD9] dark:text-[#3B82F6]",
     },
   ];
 
   return (
     <div
       className={cn(
-        "min-h-screen bg-gradient-to-br from-[#F8FAFF] to-[#F0F4FF] dark:bg-[#0D0C1D] transition-colors duration-200 font-['Inter',sans-serif]",
+        "min-h-screen bg-gradient-to-br from-[#F8FAFF] to-[#F0F4FF] dark:bg-[#000000] transition-colors duration-200 font-['Inter',sans-serif]",
         "max-w-md mx-auto relative",
       )}
       style={{ maxWidth: "390px", minHeight: "844px" }}
     >
       {/* Top Header */}
-      <div className="bg-white/70 dark:bg-black/20 backdrop-blur-lg border-b border-gray-200/50 dark:border-[#2A2A3A] px-4 py-3">
+      <div className="bg-white/70 dark:bg-[#1A1A1A] border-b border-gray-200/50 dark:border-[#333333] px-4 py-3">
         {/* iOS Status Bar */}
-        <div className="flex items-center justify-between text-sm font-semibold text-gray-800 dark:text-[#EDEDED] mb-2">
+        <div className="flex items-center justify-between text-sm font-semibold text-gray-800 dark:text-white mb-2">
           <span>{formatTime(currentTime)}</span>
           <div className="flex items-center gap-1">
             <div className="flex gap-1">
@@ -137,7 +137,7 @@ const Index = () => {
         {/* Header Content */}
         <div className="flex items-center justify-between">
           <div></div>
-          <h1 className="text-lg font-bold text-gray-900 dark:text-[#FFFFFF] tracking-wide">
+          <h1 className="text-lg font-bold text-gray-900 dark:text-white tracking-wide">
             NicotineFree
           </h1>
           <div className="flex items-center gap-2">
@@ -145,16 +145,16 @@ const Index = () => {
               onClick={() => navigate("/achievements")}
               className="p-2 rounded-2xl hover:bg-gray-100 dark:hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
             >
-              <Trophy className="w-5 h-5 text-[#6B46FF] dark:text-[#A259FF] drop-shadow-[0_0_8px_rgba(107,70,255,0.3)] dark:drop-shadow-[0_0_8px_rgba(162,89,255,0.6)]" />
+              <Trophy className="w-5 h-5 text-[#6B46FF] dark:text-[#8B5CF6]" />
             </button>
             <button
               onClick={toggleDarkMode}
               className="p-2 rounded-2xl hover:bg-gray-100 dark:hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
             >
               {isDark ? (
-                <Sun className="w-5 h-5 text-[#FFA726] dark:text-[#4EDCFF]" />
+                <Sun className="w-5 h-5 text-yellow-500" />
               ) : (
-                <Moon className="w-5 h-5 text-[#6B46FF] dark:text-[#555555]" />
+                <Moon className="w-5 h-5 text-[#6B46FF]" />
               )}
             </button>
           </div>
@@ -164,8 +164,7 @@ const Index = () => {
       {/* Main Content */}
       <div className="px-4 py-6 pb-24 space-y-6">
         {/* Combined Progress + Inspiration Card */}
-        <Card className="bg-white/80 dark:bg-black/30 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 shadow-xl dark:shadow-2xl rounded-3xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 to-blue-50/50 dark:from-purple-500/5 dark:to-blue-500/5 pointer-events-none" />
+        <Card className="bg-white/80 dark:bg-[#1A1A1A] border border-gray-200/50 dark:border-[#333333] shadow-xl dark:shadow-none rounded-3xl overflow-hidden">
           <CardHeader className="pb-4 relative z-10">
             <CardTitle className="text-lg font-bold text-gray-900 dark:text-[#FFFFFF]">
               Today's Status
@@ -175,7 +174,7 @@ const Index = () => {
             {/* Nicotine Reduction Message */}
             <div className="space-y-4">
               <div className="space-y-3">
-                <p className="text-2xl font-bold text-[#6B46FF] dark:text-[#A259FF] mb-2 drop-shadow-[0_0_8px_rgba(107,70,255,0.2)] dark:drop-shadow-[0_0_12px_rgba(162,89,255,0.4)]">
+                <p className="text-2xl font-bold text-[#6B46FF] dark:text-[#8B5CF6] mb-2">
                   You've used 2.3 mg today – down 15% from your average.
                 </p>
 
@@ -187,8 +186,8 @@ const Index = () => {
                       Days until 0mg target:
                     </span>
                   </div>
-                  <div className="bg-purple-100/80 dark:bg-[#A259FF]/20 backdrop-blur-sm border border-purple-200/50 dark:border-[#A259FF]/30 px-3 py-1 rounded-full shadow-md dark:shadow-[0_0_16px_rgba(162,89,255,0.25)]">
-                    <span className="text-sm font-bold text-[#6B46FF] dark:text-[#A259FF]">
+                  <div className="bg-purple-100/80 dark:bg-[#333333] border border-purple-200/50 dark:border-[#444444] px-3 py-1 rounded-full">
+                    <span className="text-sm font-bold text-[#6B46FF] dark:text-[#8B5CF6]">
                       {daysUntilZero} days left
                     </span>
                   </div>
@@ -216,8 +215,8 @@ const Index = () => {
                 className={cn(
                   "px-8 py-3 rounded-2xl text-white font-bold transition-all duration-300 border-0",
                   hasLoggedToday
-                    ? "bg-gradient-to-r from-[#00B976] to-[#2DD4BF] dark:from-[#00FF9D] dark:to-[#3AFF7C] shadow-lg dark:shadow-[0_0_24px_rgba(0,255,157,0.4)] hover:shadow-xl dark:hover:shadow-[0_0_32px_rgba(0,255,157,0.6)]"
-                    : "bg-gradient-to-r from-[#6B46FF] to-[#8B5CF6] dark:from-[#A259FF] dark:to-[#B85FFF] shadow-lg dark:shadow-[0_0_24px_rgba(162,89,255,0.4)] hover:shadow-xl dark:hover:shadow-[0_0_32px_rgba(162,89,255,0.6)]",
+                    ? "bg-gradient-to-r from-[#00B976] to-[#2DD4BF] dark:bg-[#00B976] shadow-lg dark:shadow-none"
+                    : "bg-gradient-to-r from-[#6B46FF] to-[#8B5CF6] dark:bg-[#6B46FF] shadow-lg dark:shadow-none",
                 )}
               >
                 <Plus className="w-5 h-5 mr-2" />
@@ -251,8 +250,7 @@ const Index = () => {
         </Card>
 
         {/* Overall Progress Summary Card */}
-        <Card className="bg-white/80 dark:bg-black/30 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 shadow-xl dark:shadow-2xl rounded-3xl overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-50/30 to-cyan-50/30 dark:from-purple-500/5 dark:to-cyan-500/5 pointer-events-none" />
+        <Card className="bg-white/80 dark:bg-[#1A1A1A] border border-gray-200/50 dark:border-[#333333] shadow-xl dark:shadow-none rounded-3xl overflow-hidden">
           <CardHeader className="pb-4 relative z-10">
             <CardTitle className="text-lg font-bold text-gray-900 dark:text-[#FFFFFF] flex items-center gap-2">
               📊 Your Overall Progress
@@ -281,7 +279,7 @@ const Index = () => {
                   >
                     {/* Icon */}
                     <div className="flex justify-center mb-3">
-                      <div className="p-3 rounded-2xl bg-gray-100/80 dark:bg-black/20 backdrop-blur-sm border border-gray-200/50 dark:border-white/10 shadow-sm dark:shadow-[0_0_16px_rgba(162,89,255,0.15)]">
+                      <div className="p-3 rounded-2xl bg-gray-100/80 dark:bg-[#333333] border border-gray-200/50 dark:border-[#444444]">
                         <Icon className={cn("w-5 h-5", metric.color)} />
                       </div>
                     </div>
