@@ -38,7 +38,6 @@ const BottomNavigation = () => {
               ? "text-[#6B46FF] dark:text-[#8B5CF6] bg-purple-50 dark:bg-[#333333]"
               : "text-gray-500 dark:text-gray-400 hover:text-[#6B46FF] dark:hover:text-[#8B5CF6] hover:bg-gray-100 dark:hover:bg-[#333333]",
           )}
-              )}
             >
               <Icon
                 className={cn(
