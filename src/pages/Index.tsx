@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Moon, Sun, Trophy, Plus, Quote, Calendar } from "lucide-react";
+import {
+  Moon,
+  Sun,
+  Trophy,
+  Plus,
+  Quote,
+  Calendar,
+  Clock,
+  DollarSign,
+} from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ProgressDots } from "@/components/ui/progress-dots";
@@ -68,6 +77,34 @@ const Index = () => {
   // Calculate days until 0mg target (this would be dynamic based on user's plan)
   const daysUntilZero = 17; // This would be calculated from user's reduction plan
 
+  // Overall progress metrics (would come from stored data/calculations)
+  const progressMetrics = [
+    {
+      icon: "📆",
+      label: "Days to 0mg",
+      value: "17 days left",
+      color: "text-[#5B8DEF]",
+    },
+    {
+      icon: "🚭",
+      label: "Units avoided",
+      value: "12 cigarettes / 8 vapes",
+      color: "text-[#7ED6A3]",
+    },
+    {
+      icon: "💵",
+      label: "Money saved",
+      value: "$32.50",
+      color: "text-[#70D6FF]",
+    },
+    {
+      icon: "⏱",
+      label: "Time saved",
+      value: "3 hrs 45 mins",
+      color: "text-orange-500",
+    },
+  ];
+
   return (
     <div
       className={cn(
@@ -120,7 +157,7 @@ const Index = () => {
       </div>
 
       {/* Main Content */}
-      <div className="px-4 py-6 pb-24">
+      <div className="px-4 py-6 pb-24 space-y-6">
         {/* Combined Progress + Inspiration Card */}
         <Card className="bg-white dark:bg-gray-800 shadow-lg border-0 rounded-2xl">
           <CardHeader className="pb-4">
@@ -136,7 +173,7 @@ const Index = () => {
                   You've used 2.3 mg today – down 15% from your average.
                 </p>
 
-                {/* Days until 0mg target - New Addition */}
+                {/* Days until 0mg target */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-[#5B8DEF]" />
@@ -203,6 +240,36 @@ const Index = () => {
               <blockquote className="text-[#2D2D2D] dark:text-white text-sm leading-relaxed italic font-medium opacity-80">
                 "{todaysQuote}"
               </blockquote>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Overall Progress Summary Card */}
+        <Card className="bg-white dark:bg-gray-800 shadow-lg border-0 rounded-2xl">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-lg font-semibold text-[#2D2D2D] dark:text-white flex items-center gap-2">
+              📊 Your Overall Progress
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            {/* 2x2 Grid Layout for Progress Metrics */}
+            <div className="grid grid-cols-2 gap-3">
+              {progressMetrics.map((metric, index) => (
+                <div
+                  key={index}
+                  className="bg-[#F4F6FA] dark:bg-gray-700 p-4 rounded-xl"
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-lg">{metric.icon}</span>
+                    <span className="text-xs font-medium text-[#2D2D2D] dark:text-white opacity-70">
+                      {metric.label}
+                    </span>
+                  </div>
+                  <div className={cn("text-sm font-bold", metric.color)}>
+                    {metric.value}
+                  </div>
+                </div>
+              ))}
             </div>
           </CardContent>
         </Card>
