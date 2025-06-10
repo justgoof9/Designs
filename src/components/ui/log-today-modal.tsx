@@ -53,7 +53,7 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
   ];
 
   const cravingLevels = [
-    { label: "None", value: "none", color: "bg-[#00D98D]" },
+    { label: "None", value: "none", color: "bg-[#00FF9D]" },
     { label: "Low", value: "low", color: "bg-yellow-500" },
     { label: "Medium", value: "medium", color: "bg-orange-500" },
     { label: "High", value: "high", color: "bg-red-500" },
@@ -86,21 +86,21 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
       label: "Reduced",
       icon: <TrendingDown className="w-5 h-5" />,
       description: "Used less than yesterday",
-      color: "text-[#00D98D]",
+      color: "text-[#00FF9D]",
     },
     {
       id: "same",
       label: "Stayed Same",
       icon: <Minus className="w-5 h-5" />,
       description: "Similar to yesterday",
-      color: "text-[#4F7BFF]",
+      color: "text-[#4EDCFF]",
     },
     {
       id: "increased",
       label: "Increased",
       icon: <TrendingUp className="w-5 h-5" />,
       description: "Used more than yesterday",
-      color: "text-[#FF7A45]",
+      color: "text-[#FF6B6B]",
     },
   ];
 
@@ -115,7 +115,7 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
 
   const getAIEncouragement = () => {
     if (usageComparison === "reduced") {
-      return "Great job cutting back again today! You're building incredible momentum. 🌟";
+      return "Great job cutting back again today! You're building incredible momentum. ��";
     } else if (usageComparison === "same") {
       return "Consistency is key! Maintaining your level shows great self-control. Keep it up! 💪";
     } else if (usageComparison === "increased") {
@@ -169,46 +169,47 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <Card className="bg-[#1A1C24] shadow-2xl border border-[#2A2E39] rounded-2xl w-full max-w-sm max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-xl flex items-center justify-center z-50 p-4 font-['Inter',sans-serif]">
+      <Card className="bg-black/40 backdrop-blur-2xl border border-white/20 shadow-2xl rounded-3xl w-full max-w-sm max-h-[90vh] overflow-y-auto">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-cyan-500/10 pointer-events-none rounded-3xl" />
         {showAIEncouragement ? (
           // AI Encouragement Screen
-          <CardContent className="p-8 text-center">
+          <CardContent className="p-8 text-center relative z-10">
             <div className="space-y-6">
-              <div className="p-4 bg-[#4F7BFF]/20 border border-[#4F7BFF]/30 rounded-full w-20 h-20 mx-auto flex items-center justify-center shadow-[0_0_20px_rgba(79,123,255,0.3)]">
-                <Brain className="w-10 h-10 text-[#4F7BFF]" />
+              <div className="p-6 bg-gradient-to-br from-[#A259FF] to-[#B85FFF] rounded-3xl w-24 h-24 mx-auto flex items-center justify-center shadow-[0_0_32px_rgba(162,89,255,0.6)]">
+                <Brain className="w-12 h-12 text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-[#F5F7FA] mb-3">
+                <h3 className="text-2xl font-bold text-[#FFFFFF] mb-3">
                   AI Analysis
                 </h3>
-                <p className="text-[#A0A3B1] leading-relaxed">
+                <p className="text-[#B0B0B0] leading-relaxed">
                   {getAIEncouragement()}
                 </p>
               </div>
               <div className="flex items-center justify-center gap-2">
-                <div className="w-2 h-2 bg-[#4F7BFF] rounded-full animate-pulse"></div>
-                <div className="w-2 h-2 bg-[#4F7BFF] rounded-full animate-pulse delay-100"></div>
-                <div className="w-2 h-2 bg-[#4F7BFF] rounded-full animate-pulse delay-200"></div>
+                <div className="w-3 h-3 bg-[#A259FF] rounded-full animate-pulse"></div>
+                <div className="w-3 h-3 bg-[#4EDCFF] rounded-full animate-pulse delay-100"></div>
+                <div className="w-3 h-3 bg-[#00FF9D] rounded-full animate-pulse delay-200"></div>
               </div>
             </div>
           </CardContent>
         ) : (
           // Regular Form
           <>
-            <CardHeader className="pb-4">
+            <CardHeader className="pb-4 relative z-10">
               <div className="flex items-center justify-between">
-                <CardTitle className="text-lg font-semibold text-[#F5F7FA]">
+                <CardTitle className="text-lg font-bold text-[#FFFFFF]">
                   Log Today's Use
                 </CardTitle>
                 <button
                   onClick={onClose}
-                  className="p-2 rounded-full hover:bg-[#2A2E39] transition-colors"
+                  className="p-2 rounded-2xl hover:bg-white/10 transition-all duration-300"
                 >
-                  <X className="w-5 h-5 text-[#6C7387]" />
+                  <X className="w-5 h-5 text-[#8A8A8A]" />
                 </button>
               </div>
-              <p className="text-sm text-[#A0A3B1]">
+              <p className="text-sm text-[#B0B0B0]">
                 {new Date().toLocaleDateString("en-US", {
                   weekday: "long",
                   year: "numeric",
@@ -217,14 +218,14 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
                 })}
               </p>
             </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="space-y-6 relative z-10">
               {/* Yesterday's Use */}
-              <div className="bg-[#1F212B] border border-[#2A2E39] p-4 rounded-xl">
+              <div className="bg-black/30 backdrop-blur-sm border border-white/10 p-4 rounded-2xl">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-[#F5F7FA]">
+                  <span className="text-sm font-medium text-[#EDEDED]">
                     Yesterday's use:
                   </span>
-                  <span className="text-lg font-bold text-[#4F7BFF]">
+                  <span className="text-lg font-bold text-[#A259FF] drop-shadow-[0_0_8px_rgba(162,89,255,0.4)]">
                     {yesterdaysUse}
                   </span>
                 </div>
@@ -232,7 +233,7 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
 
               {/* Usage Comparison */}
               <div>
-                <h3 className="font-semibold text-[#F5F7FA] mb-3">
+                <h3 className="font-bold text-[#FFFFFF] mb-3">
                   Compared to yesterday, did you:
                 </h3>
                 <div className="space-y-3">
@@ -241,20 +242,20 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
                       key={option.id}
                       onClick={() => setUsageComparison(option.id)}
                       className={cn(
-                        "w-full p-3 rounded-xl border-2 transition-all duration-200 flex items-center gap-3",
+                        "w-full p-3 rounded-2xl border-2 transition-all duration-300 flex items-center gap-3 backdrop-blur-sm",
                         usageComparison === option.id
-                          ? "border-[#4F7BFF] bg-[#4F7BFF]/10"
-                          : "border-[#2A2E39] hover:border-[#4F7BFF]/50 bg-[#1F212B]",
+                          ? "border-[#A259FF] bg-[#A259FF]/20 shadow-[0_0_16px_rgba(162,89,255,0.3)]"
+                          : "border-white/10 hover:border-[#A259FF]/50 bg-black/20",
                       )}
                     >
                       <div className={cn("flex-shrink-0", option.color)}>
                         {option.icon}
                       </div>
                       <div className="flex-1 text-left">
-                        <p className="font-medium text-[#F5F7FA]">
+                        <p className="font-bold text-[#FFFFFF]">
                           {option.label}
                         </p>
-                        <p className="text-xs text-[#A0A3B1]">
+                        <p className="text-xs text-[#B0B0B0]">
                           {option.description}
                         </p>
                       </div>
@@ -265,8 +266,8 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
 
               {/* Mood Selection */}
               <div>
-                <h3 className="font-semibold text-[#F5F7FA] mb-3">
-                  How are you feeling? <span className="text-[#FF7A45]">*</span>
+                <h3 className="font-bold text-[#FFFFFF] mb-3">
+                  How are you feeling? <span className="text-[#FF6B6B]">*</span>
                 </h3>
                 <div className="grid grid-cols-2 gap-3">
                   {moodOptions.map((mood) => (
@@ -274,14 +275,14 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
                       key={mood.value}
                       onClick={() => setSelectedMood(mood.value)}
                       className={cn(
-                        "p-3 rounded-xl border-2 transition-all duration-200 text-center",
+                        "p-3 rounded-2xl border-2 transition-all duration-300 text-center backdrop-blur-sm",
                         selectedMood === mood.value
-                          ? "border-[#4F7BFF] bg-[#4F7BFF]/10"
-                          : "border-[#2A2E39] hover:border-[#4F7BFF]/50 bg-[#1F212B]",
+                          ? "border-[#A259FF] bg-[#A259FF]/20 shadow-[0_0_16px_rgba(162,89,255,0.3)]"
+                          : "border-white/10 hover:border-[#A259FF]/50 bg-black/20",
                       )}
                     >
                       <div className="text-2xl mb-1">{mood.emoji}</div>
-                      <div className="text-sm font-medium text-[#F5F7FA]">
+                      <div className="text-sm font-bold text-[#FFFFFF]">
                         {mood.label}
                       </div>
                     </button>
@@ -291,8 +292,8 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
 
               {/* Craving Level */}
               <div>
-                <h3 className="font-semibold text-[#F5F7FA] mb-3">
-                  Craving Level <span className="text-[#FF7A45]">*</span>
+                <h3 className="font-bold text-[#FFFFFF] mb-3">
+                  Craving Level <span className="text-[#FF6B6B]">*</span>
                 </h3>
                 <div className="space-y-2">
                   {cravingLevels.map((level) => (
@@ -300,16 +301,16 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
                       key={level.value}
                       onClick={() => setSelectedCraving(level.value)}
                       className={cn(
-                        "w-full p-3 rounded-xl border-2 transition-all duration-200 flex items-center gap-3",
+                        "w-full p-3 rounded-2xl border-2 transition-all duration-300 flex items-center gap-3 backdrop-blur-sm",
                         selectedCraving === level.value
-                          ? "border-[#4F7BFF] bg-[#4F7BFF]/10"
-                          : "border-[#2A2E39] hover:border-[#4F7BFF]/50 bg-[#1F212B]",
+                          ? "border-[#A259FF] bg-[#A259FF]/20 shadow-[0_0_16px_rgba(162,89,255,0.3)]"
+                          : "border-white/10 hover:border-[#A259FF]/50 bg-black/20",
                       )}
                     >
                       <div
                         className={cn("w-4 h-4 rounded-full", level.color)}
                       />
-                      <span className="font-medium text-[#F5F7FA]">
+                      <span className="font-bold text-[#FFFFFF]">
                         {level.label}
                       </span>
                     </button>
@@ -319,7 +320,7 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
 
               {/* Nicotine Product Used (Optional) */}
               <div>
-                <h3 className="font-semibold text-[#F5F7FA] mb-3">
+                <h3 className="font-bold text-[#FFFFFF] mb-3">
                   What did you use? (Optional)
                 </h3>
                 <div className="space-y-3">
@@ -332,18 +333,18 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
                         )
                       }
                       className={cn(
-                        "w-full p-3 rounded-xl border-2 transition-all duration-200 flex items-center gap-3",
+                        "w-full p-3 rounded-2xl border-2 transition-all duration-300 flex items-center gap-3 backdrop-blur-sm",
                         selectedProduct === product.id
-                          ? "border-[#4F7BFF] bg-[#4F7BFF]/10"
-                          : "border-[#2A2E39] hover:border-[#4F7BFF]/50 bg-[#1F212B]",
+                          ? "border-[#A259FF] bg-[#A259FF]/20 shadow-[0_0_16px_rgba(162,89,255,0.3)]"
+                          : "border-white/10 hover:border-[#A259FF]/50 bg-black/20",
                       )}
                     >
-                      <div className="text-[#4F7BFF]">{product.icon}</div>
+                      <div className="text-[#A259FF]">{product.icon}</div>
                       <div className="flex-1 text-left">
-                        <p className="font-medium text-[#F5F7FA]">
+                        <p className="font-bold text-[#FFFFFF]">
                           {product.label}
                         </p>
-                        <p className="text-xs text-[#A0A3B1]">
+                        <p className="text-xs text-[#B0B0B0]">
                           {product.description}
                         </p>
                       </div>
@@ -355,13 +356,13 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
               {/* Nicotine Amount */}
               {selectedProduct && (
                 <div>
-                  <h3 className="font-semibold text-[#F5F7FA] mb-3">
+                  <h3 className="font-bold text-[#FFFFFF] mb-3">
                     Nicotine Amount
                     {isNicotineAmountRequired && (
-                      <span className="text-[#FF7A45]"> *</span>
+                      <span className="text-[#FF6B6B]"> *</span>
                     )}
                     {!isNicotineAmountRequired && (
-                      <span className="text-[#6C7387]"> (Optional)</span>
+                      <span className="text-[#8A8A8A]"> (Optional)</span>
                     )}
                   </h3>
                   <input
@@ -369,9 +370,9 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
                     value={nicotineAmount}
                     onChange={(e) => setNicotineAmount(e.target.value)}
                     placeholder={getNicotineAmountPlaceholder()}
-                    className="w-full px-4 py-3 bg-[#1F212B] border border-[#2A2E39] rounded-xl text-[#F5F7FA] placeholder-[#6C7387] focus:outline-none focus:ring-2 focus:ring-[#4F7BFF] focus:border-transparent"
+                    className="w-full px-4 py-3 bg-black/30 backdrop-blur-sm border border-white/10 rounded-2xl text-[#FFFFFF] placeholder-[#8A8A8A] focus:outline-none focus:ring-2 focus:ring-[#A259FF] focus:border-transparent transition-all duration-300"
                   />
-                  <p className="text-xs text-[#6C7387] mt-1">
+                  <p className="text-xs text-[#8A8A8A] mt-1">
                     Enter the nicotine strength (e.g., 6mg, 12mg)
                   </p>
                 </div>
@@ -379,14 +380,14 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
 
               {/* Note */}
               <div>
-                <h3 className="font-semibold text-[#F5F7FA] mb-3">
+                <h3 className="font-bold text-[#FFFFFF] mb-3">
                   Quick Note (Optional)
                 </h3>
                 <textarea
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
                   placeholder="How was your day? Any thoughts or reflections..."
-                  className="w-full px-4 py-3 bg-[#1F212B] border border-[#2A2E39] rounded-xl text-[#F5F7FA] placeholder-[#6C7387] focus:outline-none focus:ring-2 focus:ring-[#4F7BFF] focus:border-transparent resize-none"
+                  className="w-full px-4 py-3 bg-black/30 backdrop-blur-sm border border-white/10 rounded-2xl text-[#FFFFFF] placeholder-[#8A8A8A] focus:outline-none focus:ring-2 focus:ring-[#A259FF] focus:border-transparent resize-none transition-all duration-300"
                   rows={3}
                 />
               </div>
@@ -396,14 +397,14 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
                 <Button
                   variant="outline"
                   onClick={onClose}
-                  className="flex-1 border-[#2A2E39] text-[#A0A3B1] hover:bg-[#2A2E39] rounded-xl bg-transparent"
+                  className="flex-1 border-white/20 text-[#B0B0B0] hover:bg-white/10 rounded-2xl bg-black/20 backdrop-blur-sm"
                 >
                   Cancel
                 </Button>
                 <Button
                   onClick={handleSave}
                   disabled={!isFormValid}
-                  className="flex-1 bg-[#4F7BFF] hover:bg-[#4F7BFF]/90 text-white rounded-xl disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(79,123,255,0.3)]"
+                  className="flex-1 bg-gradient-to-r from-[#A259FF] to-[#B85FFF] hover:from-[#B85FFF] hover:to-[#A259FF] text-white rounded-2xl disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_24px_rgba(162,89,255,0.4)] border-0 transition-all duration-300"
                 >
                   <Save className="w-4 h-4 mr-2" />
                   Save
@@ -415,8 +416,8 @@ const LogTodayModal: React.FC<LogTodayModalProps> = ({
                 selectedProduct &&
                 isNicotineAmountRequired &&
                 !nicotineAmount.trim() && (
-                  <div className="bg-[#FF7A45]/20 border border-[#FF7A45]/30 rounded-xl p-3">
-                    <p className="text-sm text-[#FF7A45]">
+                  <div className="bg-red-500/20 backdrop-blur-sm border border-red-500/30 rounded-2xl p-3">
+                    <p className="text-sm text-red-400">
                       Nicotine amount is required for{" "}
                       {selectedProduct === "vape"
                         ? "vapes"

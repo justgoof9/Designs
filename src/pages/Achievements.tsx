@@ -92,36 +92,35 @@ const Achievements = () => {
   return (
     <div
       className={cn(
-        "min-h-screen bg-[#F4F6FA] dark:bg-gray-900 transition-colors duration-200",
+        "min-h-screen bg-[#0D0C1D] transition-colors duration-200 font-['Inter',sans-serif]",
         "max-w-md mx-auto relative",
       )}
       style={{ maxWidth: "390px", minHeight: "844px" }}
     >
       {/* Header */}
-      <div className="bg-white dark:bg-gray-800 px-4 py-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="bg-black/20 backdrop-blur-lg border-b border-[#2A2A3A] px-4 py-4">
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate("/")}
-            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            className="p-2 rounded-2xl hover:bg-white/10 transition-all duration-300"
           >
-            <ArrowLeft className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+            <ArrowLeft className="w-5 h-5 text-[#8A8A8A]" />
           </button>
-          <h1 className="text-lg font-semibold text-[#2D2D2D] dark:text-white">
-            Achievements
-          </h1>
+          <h1 className="text-lg font-bold text-[#FFFFFF]">Achievements</h1>
         </div>
       </div>
 
       {/* Content */}
       <div className="px-4 py-6 pb-24 space-y-6">
         {/* Progress Overview */}
-        <Card className="bg-gradient-to-r from-[#5B8DEF] to-[#70D6FF] text-white shadow-lg border-0 rounded-2xl">
-          <CardContent className="p-6 text-center">
-            <div className="text-4xl mb-3">🏆</div>
-            <h3 className="font-semibold text-xl mb-2">
+        <Card className="bg-black/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-3xl overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-cyan-500/10 pointer-events-none" />
+          <CardContent className="p-6 text-center relative z-10">
+            <div className="text-5xl mb-3">🏆</div>
+            <h3 className="font-bold text-xl mb-2 text-[#FFFFFF]">
               {earnedAchievements.length} of {achievements.length} Earned
             </h3>
-            <p className="text-white/90 text-sm leading-relaxed">
+            <p className="text-[#B0B0B0] text-sm leading-relaxed">
               Keep going to unlock more achievements and celebrate your
               progress!
             </p>
@@ -132,8 +131,8 @@ const Achievements = () => {
         {earnedAchievements.length > 0 && (
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <Star className="w-5 h-5 text-yellow-500" />
-              <h2 className="text-lg font-semibold text-[#2D2D2D] dark:text-white">
+              <Star className="w-5 h-5 text-[#00FF9D] drop-shadow-[0_0_8px_rgba(0,255,157,0.6)]" />
+              <h2 className="text-lg font-bold text-[#FFFFFF]">
                 Earned Achievements
               </h2>
             </div>
@@ -141,23 +140,26 @@ const Achievements = () => {
               {earnedAchievements.map((achievement) => (
                 <Card
                   key={achievement.id}
-                  className="bg-white dark:bg-gray-800 shadow-lg border-0 rounded-2xl border-l-4 border-l-[#5B8DEF]"
+                  className="bg-black/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-3xl overflow-hidden border-l-4 border-l-[#00FF9D]"
                 >
-                  <CardContent className="p-4">
+                  <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-purple-500/5 pointer-events-none" />
+                  <CardContent className="p-4 relative z-10">
                     <div className="flex items-center gap-4">
-                      <div className="text-3xl">{achievement.icon}</div>
+                      <div className="text-3xl p-2 bg-gradient-to-br from-[#00FF9D] to-[#3AFF7C] rounded-2xl shadow-[0_0_16px_rgba(0,255,157,0.4)]">
+                        {achievement.icon}
+                      </div>
                       <div className="flex-1">
-                        <h3 className="font-semibold text-[#2D2D2D] dark:text-white mb-1">
+                        <h3 className="font-bold text-[#FFFFFF] mb-1">
                           {achievement.title}
                         </h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                        <p className="text-sm text-[#B0B0B0] mb-2">
                           {achievement.description}
                         </p>
                         <div className="flex items-center gap-2">
-                          <span className="text-xs bg-[#5B8DEF]/10 text-[#5B8DEF] px-2 py-1 rounded-full">
+                          <span className="text-xs bg-[#00FF9D]/20 text-[#00FF9D] px-2 py-1 rounded-full border border-[#00FF9D]/30">
                             {achievement.category}
                           </span>
-                          <span className="text-xs text-gray-500">
+                          <span className="text-xs text-[#8A8A8A]">
                             Earned {achievement.date}
                           </span>
                         </div>
@@ -173,8 +175,8 @@ const Achievements = () => {
         {/* Locked Achievements */}
         <div className="space-y-4">
           <div className="flex items-center gap-2">
-            <Lock className="w-5 h-5 text-gray-500" />
-            <h2 className="text-lg font-semibold text-[#2D2D2D] dark:text-white">
+            <Lock className="w-5 h-5 text-[#8A8A8A]" />
+            <h2 className="text-lg font-bold text-[#FFFFFF]">
               Upcoming Achievements
             </h2>
           </div>
@@ -182,23 +184,26 @@ const Achievements = () => {
             {lockedAchievements.map((achievement) => (
               <Card
                 key={achievement.id}
-                className="bg-white dark:bg-gray-800 shadow-lg border-0 rounded-2xl opacity-75"
+                className="bg-black/20 backdrop-blur-xl border border-white/5 shadow-lg rounded-3xl overflow-hidden opacity-75"
               >
-                <CardContent className="p-4">
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-500/5 to-purple-500/5 pointer-events-none" />
+                <CardContent className="p-4 relative z-10">
                   <div className="flex items-center gap-4">
-                    <div className="text-3xl grayscale">{achievement.icon}</div>
+                    <div className="text-3xl grayscale p-2 bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl">
+                      {achievement.icon}
+                    </div>
                     <div className="flex-1">
-                      <h3 className="font-semibold text-[#2D2D2D] dark:text-white mb-1">
+                      <h3 className="font-bold text-[#B0B0B0] mb-1">
                         {achievement.title}
                       </h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                      <p className="text-sm text-[#8A8A8A] mb-2">
                         {achievement.description}
                       </p>
                       <div className="flex items-center gap-2">
-                        <span className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded-full">
+                        <span className="text-xs bg-black/20 text-[#8A8A8A] px-2 py-1 rounded-full border border-white/10">
                           {achievement.category}
                         </span>
-                        <Lock className="w-3 h-3 text-gray-400" />
+                        <Lock className="w-3 h-3 text-[#555555]" />
                       </div>
                     </div>
                   </div>

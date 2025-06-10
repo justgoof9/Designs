@@ -78,53 +78,53 @@ const Index = () => {
   // Calculate days until 0mg target (this would be dynamic based on user's plan)
   const daysUntilZero = 17; // This would be calculated from user's reduction plan
 
-  // Overall progress metrics with TechGlow Dark theme colors
+  // Overall progress metrics with neon cyberpunk theme colors
   const progressMetrics = [
     {
       icon: Calendar,
       label: "Days to 0mg",
       value: "17 days left",
-      color: "text-[#4F7BFF]", // Electric blue
+      color: "text-[#A259FF]", // Neon purple
     },
     {
       icon: Cigarette,
       label: "Units Avoided",
       value: "12 cigarettes / 8 vapes",
-      color: "text-[#00D98D]", // Cyber green for success
+      color: "text-[#00FF9D]", // Neon green for success
     },
     {
       icon: DollarSign,
       label: "Money Saved",
       value: "$32.50",
-      color: "text-[#00D98D]", // Cyber green for success
+      color: "text-[#00FF9D]", // Neon green for success
     },
     {
       icon: Clock,
       label: "Time Saved",
       value: "3 hrs 45 mins",
-      color: "text-[#FF7A45]", // Tangerine glow for time/urgency
+      color: "text-[#4EDCFF]", // Electric blue
     },
   ];
 
   return (
     <div
       className={cn(
-        "min-h-screen bg-[#0E0E12] transition-colors duration-200",
+        "min-h-screen bg-[#0D0C1D] transition-colors duration-200 font-['Inter',sans-serif]",
         "max-w-md mx-auto relative",
       )}
       style={{ maxWidth: "390px", minHeight: "844px" }}
     >
       {/* Top Header */}
-      <div className="bg-[#1A1C24] px-4 py-3 border-b border-[#2A2E39]">
+      <div className="bg-black/20 backdrop-blur-lg border-b border-[#2A2A3A] px-4 py-3">
         {/* iOS Status Bar */}
-        <div className="flex items-center justify-between text-sm font-semibold text-[#F5F7FA] mb-2">
+        <div className="flex items-center justify-between text-sm font-semibold text-[#EDEDED] mb-2">
           <span>{formatTime(currentTime)}</span>
           <div className="flex items-center gap-1">
             <div className="flex gap-1">
-              <div className="w-1 h-3 bg-[#F5F7FA] rounded-full"></div>
-              <div className="w-1 h-3 bg-[#F5F7FA] rounded-full"></div>
-              <div className="w-1 h-3 bg-[#F5F7FA] rounded-full"></div>
-              <div className="w-1 h-3 bg-[#6C7387] rounded-full"></div>
+              <div className="w-1 h-3 bg-[#EDEDED] rounded-full"></div>
+              <div className="w-1 h-3 bg-[#EDEDED] rounded-full"></div>
+              <div className="w-1 h-3 bg-[#EDEDED] rounded-full"></div>
+              <div className="w-1 h-3 bg-[#555555] rounded-full"></div>
             </div>
             <span className="ml-2">100%</span>
           </div>
@@ -133,22 +133,24 @@ const Index = () => {
         {/* Header Content */}
         <div className="flex items-center justify-between">
           <div></div>
-          <h1 className="text-lg font-semibold text-[#F5F7FA]">NicotineFree</h1>
+          <h1 className="text-lg font-bold text-[#FFFFFF] tracking-wide">
+            NicotineFree
+          </h1>
           <div className="flex items-center gap-2">
             <button
               onClick={() => navigate("/achievements")}
-              className="p-2 rounded-full hover:bg-[#2A2E39] transition-colors"
+              className="p-2 rounded-2xl hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
             >
-              <Trophy className="w-5 h-5 text-[#4F7BFF]" />
+              <Trophy className="w-5 h-5 text-[#A259FF] drop-shadow-[0_0_8px_rgba(162,89,255,0.6)]" />
             </button>
             <button
               onClick={toggleDarkMode}
-              className="p-2 rounded-full hover:bg-[#2A2E39] transition-colors"
+              className="p-2 rounded-2xl hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
             >
               {isDark ? (
-                <Sun className="w-5 h-5 text-[#FF7A45]" />
+                <Sun className="w-5 h-5 text-[#4EDCFF]" />
               ) : (
-                <Moon className="w-5 h-5 text-[#6C7387]" />
+                <Moon className="w-5 h-5 text-[#555555]" />
               )}
             </button>
           </div>
@@ -158,36 +160,37 @@ const Index = () => {
       {/* Main Content */}
       <div className="px-4 py-6 pb-24 space-y-6">
         {/* Combined Progress + Inspiration Card */}
-        <Card className="bg-[#1A1C24] shadow-2xl border-0 rounded-2xl">
-          <CardHeader className="pb-4">
-            <CardTitle className="text-lg font-semibold text-[#F5F7FA]">
+        <Card className="bg-black/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-3xl overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5 pointer-events-none" />
+          <CardHeader className="pb-4 relative z-10">
+            <CardTitle className="text-lg font-bold text-[#FFFFFF]">
               Today's Status
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent className="space-y-6 relative z-10">
             {/* Nicotine Reduction Message */}
             <div className="space-y-4">
               <div className="space-y-3">
-                <p className="text-2xl font-bold text-[#4F7BFF] mb-2">
+                <p className="text-2xl font-bold text-[#A259FF] mb-2 drop-shadow-[0_0_12px_rgba(162,89,255,0.4)]">
                   You've used 2.3 mg today – down 15% from your average.
                 </p>
 
                 {/* Days until 0mg target */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-[#4F7BFF]" />
-                    <span className="text-sm font-medium text-[#F5F7FA]">
+                    <Calendar className="w-4 h-4 text-[#A259FF]" />
+                    <span className="text-sm font-medium text-[#EDEDED]">
                       Days until 0mg target:
                     </span>
                   </div>
-                  <div className="bg-[#4F7BFF]/20 border border-[#4F7BFF]/30 px-3 py-1 rounded-full">
-                    <span className="text-sm font-bold text-[#4F7BFF]">
+                  <div className="bg-[#A259FF]/20 backdrop-blur-sm border border-[#A259FF]/30 px-3 py-1 rounded-full shadow-[0_0_16px_rgba(162,89,255,0.25)]">
+                    <span className="text-sm font-bold text-[#A259FF]">
                       {daysUntilZero} days left
                     </span>
                   </div>
                 </div>
 
-                <p className="text-sm text-[#A0A3B1]">
+                <p className="text-sm text-[#B0B0B0]">
                   Great progress! You're successfully reducing your nicotine
                   intake.
                 </p>
@@ -195,7 +198,7 @@ const Index = () => {
 
               {/* Progress Visual - 7 dots for trend/streak */}
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-[#F5F7FA]">
+                <span className="text-sm font-medium text-[#EDEDED]">
                   Reduction Progress
                 </span>
                 <ProgressDots totalDots={7} filledDots={5} />
@@ -207,10 +210,10 @@ const Index = () => {
               <Button
                 onClick={() => setIsLogModalOpen(true)}
                 className={cn(
-                  "px-8 py-3 rounded-xl text-white font-medium transition-all duration-200 shadow-lg",
+                  "px-8 py-3 rounded-2xl text-white font-bold transition-all duration-300 border-0",
                   hasLoggedToday
-                    ? "bg-[#00D98D] hover:bg-[#00D98D]/90 shadow-[0_0_20px_rgba(0,217,141,0.3)]"
-                    : "bg-[#4F7BFF] hover:bg-[#4F7BFF]/90 shadow-[0_0_20px_rgba(79,123,255,0.3)]",
+                    ? "bg-gradient-to-r from-[#00FF9D] to-[#3AFF7C] shadow-[0_0_24px_rgba(0,255,157,0.4)] hover:shadow-[0_0_32px_rgba(0,255,157,0.6)]"
+                    : "bg-gradient-to-r from-[#A259FF] to-[#B85FFF] shadow-[0_0_24px_rgba(162,89,255,0.4)] hover:shadow-[0_0_32px_rgba(162,89,255,0.6)]",
                 )}
               >
                 <Plus className="w-5 h-5 mr-2" />
@@ -219,7 +222,7 @@ const Index = () => {
             </div>
 
             {/* Light Divider */}
-            <div className="w-full h-px bg-[#2A2E39]"></div>
+            <div className="w-full h-px bg-gradient-to-r from-transparent via-[#2A2A3A] to-transparent"></div>
 
             {/* Daily Inspiration (at bottom of card) */}
             <div
@@ -231,26 +234,27 @@ const Index = () => {
               )}
             >
               <div className="flex items-center justify-center gap-2 mb-3">
-                <Quote className="w-4 h-4 text-[#D26AFF]" />
-                <span className="text-sm font-medium text-[#F5F7FA] opacity-70">
+                <Quote className="w-4 h-4 text-[#4EDCFF]" />
+                <span className="text-sm font-medium text-[#EDEDED] opacity-70">
                   Daily Inspiration
                 </span>
               </div>
-              <blockquote className="text-[#F5F7FA] text-sm leading-relaxed italic font-medium opacity-80">
+              <blockquote className="text-[#FFFFFF] text-sm leading-relaxed italic font-medium opacity-90">
                 "{todaysQuote}"
               </blockquote>
             </div>
           </CardContent>
         </Card>
 
-        {/* Overall Progress Summary Card - TechGlow Dark */}
-        <Card className="bg-[#1A1C24] shadow-2xl border-0 rounded-2xl">
-          <CardHeader className="pb-4">
-            <CardTitle className="text-lg font-semibold text-[#F5F7FA] flex items-center gap-2">
+        {/* Overall Progress Summary Card */}
+        <Card className="bg-black/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-3xl overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-cyan-500/5 pointer-events-none" />
+          <CardHeader className="pb-4 relative z-10">
+            <CardTitle className="text-lg font-bold text-[#FFFFFF] flex items-center gap-2">
               📊 Your Overall Progress
             </CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="relative z-10">
             {/* 2x2 Grid Layout with Separators */}
             <div className="grid grid-cols-2 gap-0">
               {progressMetrics.map((metric, index) => {
@@ -264,27 +268,27 @@ const Index = () => {
                     className={cn(
                       "relative p-4 text-center",
                       // Add right border for left column items
-                      !isRightColumn && "border-r border-[#2A2E39]",
+                      !isRightColumn && "border-r border-[#2A2A3A]",
                       // Add bottom border for top row items
-                      !isBottomRow && "border-b border-[#2A2E39]",
+                      !isBottomRow && "border-b border-[#2A2A3A]",
                     )}
                   >
                     {/* Icon */}
                     <div className="flex justify-center mb-3">
-                      <div className="p-2 rounded-lg bg-[#1F212B] border border-[#2A2E39]/50">
+                      <div className="p-3 rounded-2xl bg-black/20 backdrop-blur-sm border border-white/10 shadow-[0_0_16px_rgba(162,89,255,0.15)]">
                         <Icon className={cn("w-5 h-5", metric.color)} />
                       </div>
                     </div>
 
                     {/* Label - Above Value */}
-                    <div className="text-xs font-medium text-[#6C7387] mb-2 leading-tight">
+                    <div className="text-xs font-medium text-[#8A8A8A] mb-2 leading-tight">
                       {metric.label}
                     </div>
 
                     {/* Value - Uniform Font Weight and Size */}
                     <div
                       className={cn(
-                        "text-sm font-bold leading-tight",
+                        "text-sm font-bold leading-tight drop-shadow-[0_0_8px_rgba(162,89,255,0.3)]",
                         metric.color,
                       )}
                     >

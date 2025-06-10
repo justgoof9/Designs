@@ -73,25 +73,23 @@ const CommunityChat = () => {
   return (
     <div
       className={cn(
-        "min-h-screen bg-[#F4F6FA] dark:bg-gray-900 transition-colors duration-200",
+        "min-h-screen bg-[#0D0C1D] transition-colors duration-200 font-['Inter',sans-serif]",
         "max-w-md mx-auto relative flex flex-col",
       )}
       style={{ maxWidth: "390px", minHeight: "844px" }}
     >
       {/* Header */}
-      <div className="bg-white dark:bg-gray-800 px-4 py-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="bg-black/20 backdrop-blur-lg border-b border-[#2A2A3A] px-4 py-4">
         <div className="flex items-center gap-3">
           <button
             onClick={() => navigate("/")}
-            className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            className="p-2 rounded-2xl hover:bg-white/10 transition-all duration-300"
           >
-            <ArrowLeft className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+            <ArrowLeft className="w-5 h-5 text-[#8A8A8A]" />
           </button>
           <div className="flex-1">
-            <h1 className="text-lg font-semibold text-[#2D2D2D] dark:text-white">
-              Community Chat
-            </h1>
-            <p className="text-xs text-gray-600 dark:text-gray-300">
+            <h1 className="text-lg font-bold text-[#FFFFFF]">Community Chat</h1>
+            <p className="text-xs text-[#B0B0B0]">
               {messages.length} members online
             </p>
           </div>
@@ -100,13 +98,18 @@ const CommunityChat = () => {
 
       {/* Welcome Card */}
       <div className="px-4 py-4">
-        <Card className="bg-gradient-to-r from-[#5B8DEF] to-[#70D6FF] text-white shadow-lg border-0 rounded-2xl">
-          <CardContent className="p-4">
+        <Card className="bg-black/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-3xl overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-cyan-500/10 pointer-events-none" />
+          <CardContent className="p-4 relative z-10">
             <div className="flex items-center gap-3">
-              <MessageCircle className="w-8 h-8" />
+              <div className="p-2 bg-gradient-to-br from-[#A259FF] to-[#B85FFF] rounded-2xl shadow-[0_0_16px_rgba(162,89,255,0.4)]">
+                <MessageCircle className="w-6 h-6 text-white" />
+              </div>
               <div>
-                <h3 className="font-semibold text-lg">Welcome to Support</h3>
-                <p className="text-white/90 text-sm">
+                <h3 className="font-bold text-lg text-[#FFFFFF]">
+                  Welcome to Support
+                </h3>
+                <p className="text-[#B0B0B0] text-sm">
                   Share your journey with others who understand
                 </p>
               </div>
@@ -121,31 +124,25 @@ const CommunityChat = () => {
           <Card
             key={message.id}
             className={cn(
-              "shadow-sm border-0 rounded-2xl",
+              "shadow-lg border-0 rounded-3xl overflow-hidden",
               message.isOwn
-                ? "bg-[#5B8DEF] text-white ml-8"
-                : "bg-white dark:bg-gray-800 mr-8",
+                ? "bg-gradient-to-br from-[#A259FF]/20 to-[#B85FFF]/20 backdrop-blur-xl border border-[#A259FF]/30 ml-8"
+                : "bg-black/30 backdrop-blur-xl border border-white/10 mr-8",
             )}
           >
-            <CardContent className="p-4">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
+            <CardContent className="p-4 relative z-10">
               <div className="flex items-start justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <span
                     className={cn(
-                      "font-semibold text-sm",
-                      message.isOwn ? "text-white" : "text-[#5B8DEF]",
+                      "font-bold text-sm",
+                      message.isOwn ? "text-[#A259FF]" : "text-[#4EDCFF]",
                     )}
                   >
                     {message.username}
                   </span>
-                  <span
-                    className={cn(
-                      "text-xs",
-                      message.isOwn
-                        ? "text-white/70"
-                        : "text-gray-500 dark:text-gray-400",
-                    )}
-                  >
+                  <span className="text-xs text-[#8A8A8A]">
                     {message.timestamp}
                   </span>
                 </div>
@@ -153,9 +150,7 @@ const CommunityChat = () => {
               <p
                 className={cn(
                   "text-sm leading-relaxed mb-3",
-                  message.isOwn
-                    ? "text-white"
-                    : "text-[#2D2D2D] dark:text-white",
+                  message.isOwn ? "text-[#EDEDED]" : "text-[#FFFFFF]",
                 )}
               >
                 {message.message}
@@ -163,10 +158,10 @@ const CommunityChat = () => {
               <div className="flex items-center gap-2">
                 <button
                   className={cn(
-                    "flex items-center gap-1 text-xs px-2 py-1 rounded-full transition-colors",
+                    "flex items-center gap-1 text-xs px-3 py-1 rounded-full transition-all duration-300 backdrop-blur-sm",
                     message.isOwn
-                      ? "bg-white/20 text-white hover:bg-white/30"
-                      : "bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600",
+                      ? "bg-white/10 text-[#EDEDED] hover:bg-white/20 border border-white/20"
+                      : "bg-black/20 text-[#B0B0B0] hover:bg-black/30 border border-white/10",
                   )}
                 >
                   <Heart className="w-3 h-3" />
@@ -179,20 +174,20 @@ const CommunityChat = () => {
       </div>
 
       {/* Message Input */}
-      <div className="bg-white dark:bg-gray-800 p-4 border-t border-gray-200 dark:border-gray-700">
+      <div className="bg-black/30 backdrop-blur-xl p-4 border-t border-[#2A2A3A]">
         <div className="flex gap-3">
           <input
             type="text"
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder="Share your thoughts..."
-            className="flex-1 px-4 py-3 bg-[#F4F6FA] dark:bg-gray-700 rounded-xl border-0 text-[#2D2D2D] dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#5B8DEF]"
+            className="flex-1 px-4 py-3 bg-black/20 backdrop-blur-sm border border-white/10 rounded-2xl text-[#FFFFFF] placeholder-[#8A8A8A] focus:outline-none focus:ring-2 focus:ring-[#A259FF] focus:border-transparent"
             onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
           />
           <Button
             onClick={handleSendMessage}
             disabled={!newMessage.trim()}
-            className="bg-[#5B8DEF] hover:bg-[#5B8DEF]/90 text-white rounded-xl px-4"
+            className="bg-gradient-to-r from-[#A259FF] to-[#B85FFF] hover:from-[#B85FFF] hover:to-[#A259FF] text-white rounded-2xl px-4 border-0 shadow-[0_0_20px_rgba(162,89,255,0.4)] transition-all duration-300"
           >
             <Send className="w-5 h-5" />
           </Button>
