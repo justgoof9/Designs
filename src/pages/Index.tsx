@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Moon, Sun, ArrowRight, Plus, Sunrise, Brain } from "lucide-react";
+import { Moon, Sun, ArrowRight, Plus, Quote } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ProgressDots } from "@/components/ui/progress-dots";
@@ -23,11 +23,11 @@ const Index = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Fade in inspiration card on load
+  // Fade in inspiration quote on load
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowInspiration(true);
-    }, 500);
+    }, 800);
     return () => clearTimeout(timer);
   }, []);
 
@@ -58,6 +58,7 @@ const Index = () => {
     { icon: "🌟", title: "Started Journey" },
     { icon: "🎯", title: "Tracker Created" },
     { icon: "🏁", title: "Quit Date Set" },
+    { icon: "💪", title: "4 Days Strong" },
   ];
 
   // Daily quotes - could be rotated or AI-curated
@@ -116,110 +117,76 @@ const Index = () => {
 
       {/* Main Content */}
       <div className="px-4 py-6 pb-24 space-y-6">
-        {/* Progress Tracker Card */}
+        {/* Combined Progress + Inspiration Card */}
         <Card className="bg-white dark:bg-gray-800 shadow-lg border-0 rounded-2xl">
           <CardHeader className="pb-4">
             <CardTitle className="text-lg font-semibold text-[#2D2D2D] dark:text-white">
               Today's Status
             </CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div>
-              <p className="text-2xl font-bold text-[#5B8DEF] mb-2">
-                Day 4 – You're building momentum!
-              </p>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                Amazing progress! Each day gets easier as you build healthy
-                habits.
-              </p>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-[#2D2D2D] dark:text-gray-300">
-                Progress
-              </span>
-              <ProgressDots totalDots={7} filledDots={4} />
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Log Today Button */}
-        <Button
-          onClick={() => setIsLogModalOpen(true)}
-          className={cn(
-            "w-full rounded-xl py-3 text-white font-medium transition-all duration-200",
-            hasLoggedToday
-              ? "bg-[#7ED6A3] hover:bg-[#7ED6A3]/90"
-              : "bg-[#5B8DEF] hover:bg-[#5B8DEF]/90",
-          )}
-        >
-          <Plus className="w-5 h-5 mr-2" />
-          {hasLoggedToday ? "Update Today's Log" : "Log Today"}
-        </Button>
-
-        {/* Section Divider */}
-        <div className="w-full h-px bg-gray-200 dark:bg-gray-700"></div>
-
-        {/* Daily Inspiration Card */}
-        <Card
-          className={cn(
-            "bg-[#EDF6FF] dark:bg-[#1a2332] shadow-lg border-0 rounded-2xl transition-all duration-1000",
-            showInspiration
-              ? "opacity-100 transform translate-y-0"
-              : "opacity-0 transform translate-y-4",
-          )}
-        >
-          <CardContent className="p-6 text-center">
-            <div className="flex justify-center mb-4">
-              <div className="p-3 bg-[#5B8DEF]/10 rounded-full">
-                <Sunrise className="w-8 h-8 text-[#5B8DEF]" />
+          <CardContent className="space-y-6">
+            {/* Main Progress Section */}
+            <div className="space-y-4">
+              <div>
+                <p className="text-2xl font-bold text-[#5B8DEF] mb-2">
+                  Day 4 – You're building momentum!
+                </p>
+                <p className="text-sm text-gray-600 dark:text-gray-300">
+                  Each day gets easier as you build healthy habits.
+                </p>
               </div>
-            </div>
-            <h3 className="font-semibold text-lg text-[#2D2D2D] dark:text-white mb-3">
-              Daily Inspiration
-            </h3>
-            <blockquote className="text-[#2D2D2D] dark:text-white text-base leading-relaxed italic font-medium">
-              "{todaysQuote}"
-            </blockquote>
-          </CardContent>
-        </Card>
 
-        {/* Section Divider */}
-        <div className="w-full h-px bg-gray-200 dark:bg-gray-700"></div>
-
-        {/* Daily Tips Card */}
-        <Card className="bg-white dark:bg-gray-800 shadow-lg border-0 rounded-2xl">
-          <CardContent className="p-6">
-            <div className="flex items-start gap-3 mb-4">
-              <div className="text-2xl">💧</div>
-              <div className="flex-1">
-                <p className="text-[#2D2D2D] dark:text-white font-medium mb-2">
-                  Daily Tip
-                </p>
-                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
-                  Drink plenty of water to help flush out toxins and keep your
-                  body hydrated during your quit journey.
-                </p>
+              {/* Dot Progress Bar */}
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium text-[#2D2D2D] dark:text-gray-300">
+                  Progress
+                </span>
+                <ProgressDots totalDots={7} filledDots={4} />
               </div>
             </div>
 
-            <div className="flex gap-3">
+            {/* Log Today Button */}
+            <div className="flex justify-center">
               <Button
-                variant="outline"
-                className="flex-1 border-[#5B8DEF] text-[#5B8DEF] hover:bg-[#5B8DEF] hover:text-white rounded-xl"
+                onClick={() => setIsLogModalOpen(true)}
+                className={cn(
+                  "px-8 py-3 rounded-xl text-white font-medium transition-all duration-200",
+                  hasLoggedToday
+                    ? "bg-[#7ED6A3] hover:bg-[#7ED6A3]/90"
+                    : "bg-[#5B8DEF] hover:bg-[#5B8DEF]/90",
+                )}
               >
-                See More
+                <Plus className="w-5 h-5 mr-2" />
+                {hasLoggedToday ? "Update Today's Log" : "Log Today"}
               </Button>
-              <Button className="flex-1 bg-[#5B8DEF] hover:bg-[#5B8DEF]/90 text-white rounded-xl">
-                Track Progress
-              </Button>
+            </div>
+
+            {/* Divider */}
+            <div className="w-full h-px bg-gray-200 dark:bg-gray-600"></div>
+
+            {/* Integrated Daily Inspiration */}
+            <div
+              className={cn(
+                "text-center transition-all duration-1000",
+                showInspiration
+                  ? "opacity-100 transform translate-y-0"
+                  : "opacity-0 transform translate-y-2",
+              )}
+            >
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <Quote className="w-4 h-4 text-[#5B8DEF]" />
+                <span className="text-sm font-medium text-[#2D2D2D] dark:text-white opacity-70">
+                  Daily Inspiration
+                </span>
+              </div>
+              <blockquote className="text-[#2D2D2D] dark:text-white text-sm leading-relaxed italic font-medium opacity-80">
+                "{todaysQuote}"
+              </blockquote>
             </div>
           </CardContent>
         </Card>
 
-        {/* Section Divider */}
-        <div className="w-full h-px bg-gray-200 dark:bg-gray-700"></div>
-
-        {/* Achievements Section */}
+        {/* Achievements Preview Row */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-semibold text-[#2D2D2D] dark:text-white">
@@ -241,18 +208,6 @@ const Index = () => {
             ))}
           </div>
         </div>
-
-        {/* Final Motivation Section */}
-        <Card className="bg-gradient-to-r from-[#5B8DEF] to-[#70D6FF] text-white shadow-lg border-0 rounded-2xl">
-          <CardContent className="p-6 text-center">
-            <div className="text-3xl mb-3">🎯</div>
-            <h3 className="font-semibold text-lg mb-2">You're in Control</h3>
-            <p className="text-white/90 text-sm leading-relaxed">
-              Four days strong! You're proving to yourself that you can do this.
-              Keep building on this momentum.
-            </p>
-          </CardContent>
-        </Card>
       </div>
 
       {/* Log Today Modal */}
