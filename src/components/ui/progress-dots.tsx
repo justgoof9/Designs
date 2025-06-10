@@ -21,8 +21,8 @@ const ProgressDots = React.forwardRef<HTMLDivElement, ProgressDotsProps>(
             className={cn(
               "w-3 h-3 rounded-full transition-colors duration-200",
               index < filledDots
-                ? "bg-[#4D7EFF]" // New indigo blue primary for filled dots
-                : "bg-gray-200 dark:bg-gray-600", // Empty dots
+                ? "bg-[#4F7BFF] shadow-[0_0_8px_rgba(79,123,255,0.4)]" // Electric blue with glow for filled dots
+                : "bg-[#2A2E39]", // Dark border color for empty dots
             )}
           />
         ))}
