@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Moon, Sun, Trophy, Plus, Quote } from "lucide-react";
+import { Moon, Sun, Trophy, Plus, Quote, Calendar } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ProgressDots } from "@/components/ui/progress-dots";
@@ -65,6 +65,9 @@ const Index = () => {
 
   const todaysQuote = dailyQuotes[0]; // In a real app, this could rotate daily
 
+  // Calculate days until 0mg target (this would be dynamic based on user's plan)
+  const daysUntilZero = 17; // This would be calculated from user's reduction plan
+
   return (
     <div
       className={cn(
@@ -128,10 +131,26 @@ const Index = () => {
           <CardContent className="space-y-6">
             {/* Nicotine Reduction Message */}
             <div className="space-y-4">
-              <div>
+              <div className="space-y-3">
                 <p className="text-2xl font-bold text-[#5B8DEF] mb-2">
                   You've used 2.3 mg today – down 15% from your average.
                 </p>
+
+                {/* Days until 0mg target - New Addition */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Calendar className="w-4 h-4 text-[#5B8DEF]" />
+                    <span className="text-sm font-medium text-[#2D2D2D] dark:text-white">
+                      Days until 0mg target:
+                    </span>
+                  </div>
+                  <div className="bg-[#5B8DEF]/10 px-3 py-1 rounded-full">
+                    <span className="text-sm font-bold text-[#5B8DEF]">
+                      {daysUntilZero} days left
+                    </span>
+                  </div>
+                </div>
+
                 <p className="text-sm text-gray-600 dark:text-gray-300">
                   Great progress! You're successfully reducing your nicotine
                   intake.
