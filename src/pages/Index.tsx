@@ -9,12 +9,14 @@ import {
   Clock,
   DollarSign,
   Cigarette,
+  ChevronRight,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ProgressDots } from "@/components/ui/progress-dots";
 import { BottomNavigation } from "@/components/ui/bottom-navigation";
 import { LogTodayModal, LogData } from "@/components/ui/log-today-modal";
+import { ProgressDetailModal } from "@/components/ui/progress-detail-modal";
 import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
@@ -24,6 +26,9 @@ const Index = () => {
   const [isLogModalOpen, setIsLogModalOpen] = useState(false);
   const [hasLoggedToday, setHasLoggedToday] = useState(false);
   const [showInspiration, setShowInspiration] = useState(false);
+  const [selectedProgressMetric, setSelectedProgressMetric] = useState<
+    string | null
+  >(null);
   const navigate = useNavigate();
 
   // Update time every minute
@@ -82,30 +87,34 @@ const Index = () => {
   // Calculate days until 0mg target (this would be dynamic based on user's plan)
   const daysUntilZero = 17; // This would be calculated from user's reduction plan
 
-  // Overall progress metrics
+  // Overall progress metrics - now clickable
   const progressMetrics = [
     {
+      id: "days-to-zero",
       icon: Calendar,
       label: "Days to 0mg",
-      value: "17 days left",
+      value: "Tap to view",
       color: "text-[#6B46FF] dark:text-[#8B5CF6]",
     },
     {
+      id: "units-avoided",
       icon: Cigarette,
       label: "Units Avoided",
-      value: "12 cigarettes / 8 vapes",
+      value: "Tap to view",
       color: "text-[#00B976] dark:text-[#22C55E]",
     },
     {
+      id: "money-saved",
       icon: DollarSign,
       label: "Money Saved",
-      value: "$32.50",
+      value: "Tap to view",
       color: "text-[#00B976] dark:text-[#22C55E]",
     },
     {
+      id: "time-saved",
       icon: Clock,
       label: "Time Saved",
-      value: "3 hrs 45 mins",
+      value: "Tap to view",
       color: "text-[#0B8FD9] dark:text-[#3B82F6]",
     },
   ];
@@ -249,7 +258,7 @@ const Index = () => {
           </CardContent>
         </Card>
 
-        {/* Overall Progress Summary Card */}
+        {/* Overall Progress Summary Card - Now Clickable */}
         <Card className="bg-white/80 dark:bg-[#1A1426]/60 backdrop-blur-xl border border-gray-200/50 dark:border-[#2A2038] shadow-xl rounded-3xl overflow-hidden">
           <CardHeader className="pb-4">
             <CardTitle className="text-lg font-bold text-gray-900 dark:text-white flex items-center gap-2">
@@ -257,7 +266,7 @@ const Index = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            {/* 2x2 Grid Layout with Separators */}
+            {/* 2x2 Grid Layout with Clickable Sections */}
             <div className="grid grid-cols-2 gap-0">
               {progressMetrics.map((metric, index) => {
                 const Icon = metric.icon;
@@ -265,10 +274,11 @@ const Index = () => {
                 const isBottomRow = index >= 2;
 
                 return (
-                  <div
+                  <button
                     key={index}
+                    onClick={() => setSelectedProgressMetric(metric.id)}
                     className={cn(
-                      "relative p-4 text-center",
+                      "relative p-4 text-center hover:bg-gray-50 dark:hover:bg-[#2A2038] transition-all duration-300 group",
                       // Add right border for left column items
                       !isRightColumn &&
                         "border-r border-gray-200 dark:border-[#2A2038]",
@@ -279,7 +289,7 @@ const Index = () => {
                   >
                     {/* Icon */}
                     <div className="flex justify-center mb-3">
-                      <div className="p-3 rounded-2xl bg-gray-100/80 dark:bg-[#2A2038] border border-gray-200/50 dark:border-[#3A2A48] shadow-sm">
+                      <div className="p-3 rounded-2xl bg-gray-100/80 dark:bg-[#2A2038] border border-gray-200/50 dark:border-[#3A2A48] shadow-sm group-hover:shadow-md transition-all duration-300">
                         <Icon className={cn("w-5 h-5", metric.color)} />
                       </div>
                     </div>
@@ -289,16 +299,24 @@ const Index = () => {
                       {metric.label}
                     </div>
 
-                    {/* Value - Uniform Font Weight and Size */}
-                    <div
-                      className={cn(
-                        "text-sm font-bold leading-tight",
-                        metric.color,
-                      )}
-                    >
-                      {metric.value}
+                    {/* Value - Now shows "Tap to view" */}
+                    <div className="flex items-center justify-center gap-1">
+                      <div
+                        className={cn(
+                          "text-sm font-bold leading-tight",
+                          metric.color,
+                        )}
+                      >
+                        {metric.value}
+                      </div>
+                      <ChevronRight
+                        className={cn(
+                          "w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity",
+                          metric.color,
+                        )}
+                      />
                     </div>
-                  </div>
+                  </button>
                 );
               })}
             </div>
@@ -311,6 +329,13 @@ const Index = () => {
         isOpen={isLogModalOpen}
         onClose={() => setIsLogModalOpen(false)}
         onSave={handleLogSave}
+      />
+
+      {/* Progress Detail Modal */}
+      <ProgressDetailModal
+        isOpen={selectedProgressMetric !== null}
+        onClose={() => setSelectedProgressMetric(null)}
+        metricType={selectedProgressMetric}
       />
 
       {/* Bottom Navigation */}
