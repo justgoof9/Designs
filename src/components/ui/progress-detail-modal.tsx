@@ -36,7 +36,7 @@ const ProgressDetailModal: React.FC<ProgressDetailModalProps> = ({
           title: "Days to 0mg",
           chartData: [4.2, 3.8, 3.5, 3.1, 2.9, 2.5, 2.3], // Decreasing nicotine intake (mg)
           chartLabel: "Daily nicotine intake (mg)",
-          chartColor: "bg-gradient-to-t from-[#8B5CF6] to-[#A855F7]",
+          chartColor: "bg-[#8B5CF6]",
           items: [
             {
               icon: <Target className="w-5 h-5" />,
@@ -60,7 +60,7 @@ const ProgressDetailModal: React.FC<ProgressDetailModalProps> = ({
           title: "Units Avoided",
           chartData: [1, 2, 3, 4, 6, 8, 12], // Increasing units avoided per day
           chartLabel: "Units avoided per day",
-          chartColor: "bg-gradient-to-t from-[#22C55E] to-[#16A34A]",
+          chartColor: "bg-[#22C55E]",
           items: [
             {
               icon: <Cigarette className="w-5 h-5" />,
@@ -80,7 +80,7 @@ const ProgressDetailModal: React.FC<ProgressDetailModalProps> = ({
           title: "Money Saved",
           chartData: [14, 28, 45, 62, 83, 105, 127], // Cumulative savings growing ($)
           chartLabel: "Total savings ($)",
-          chartColor: "bg-gradient-to-t from-[#22C55E] to-[#16A34A]",
+          chartColor: "bg-[#22C55E]",
           items: [
             {
               icon: <DollarSign className="w-5 h-5" />,
@@ -104,7 +104,7 @@ const ProgressDetailModal: React.FC<ProgressDetailModalProps> = ({
           title: "Time Saved",
           chartData: [25, 35, 42, 48, 58, 65, 75], // Minutes saved per day (growing trend)
           chartLabel: "Daily time saved (minutes)",
-          chartColor: "bg-gradient-to-t from-[#3B82F6] to-[#1D4ED8]",
+          chartColor: "bg-[#3B82F6]",
           items: [
             {
               icon: <Clock className="w-5 h-5" />,
@@ -138,7 +138,7 @@ const ProgressDetailModal: React.FC<ProgressDetailModalProps> = ({
     }
   };
 
-  // Simple mini chart component
+  // Simple mini chart component with fixed rendering
   const MiniChart = ({
     data,
     color,
@@ -152,41 +152,56 @@ const ProgressDetailModal: React.FC<ProgressDetailModalProps> = ({
     const minValue = Math.min(...data);
 
     return (
-      <div className="bg-gray-50/80 dark:bg-[#2A2038]/40 rounded-2xl p-3 border border-gray-200/50 dark:border-[#3A2A48]/50">
-        <div className="flex items-center gap-2 mb-2">
+      <div className="bg-gray-50/80 dark:bg-[#2A2038]/40 rounded-2xl p-4 border border-gray-200/50 dark:border-[#3A2A48]/50">
+        <div className="flex items-center gap-2 mb-3">
           <BarChart3 className="w-4 h-4 text-[#8B5CF6]" />
           <span className="text-xs font-medium text-gray-600 dark:text-gray-400">
             {label}
           </span>
         </div>
-        <div className="flex items-end gap-1 h-12">
+
+        {/* Chart Container with fixed height */}
+        <div className="h-16 flex items-end justify-between gap-1 mb-3">
           {data.map((value, index) => {
-            // Calculate height percentage based on actual data range
+            // Calculate height percentage - ensure visibility
+            const range = maxValue - minValue;
             const heightPercent =
-              maxValue === minValue
-                ? 50 // If all values are the same, show 50% height
-                : ((value - minValue) / (maxValue - minValue)) * 100;
+              range === 0 ? 70 : ((value - minValue) / range) * 100;
+            const finalHeight = Math.max(heightPercent, 15); // Minimum 15% height
 
             return (
-              <div key={index} className="flex-1 flex flex-col items-center">
-                <div
-                  className={cn(
-                    "w-full rounded-t-sm transition-all duration-500 delay-75",
-                    color,
-                  )}
-                  style={{
-                    height: `${Math.max(heightPercent, 8)}%`, // Minimum 8% for visibility
-                    transitionDelay: `${index * 100}ms`, // Staggered animation
-                  }}
-                />
+              <div key={index} className="flex flex-col items-center flex-1">
+                {/* Value label on top */}
+                <div className="text-xs text-gray-600 dark:text-gray-400 mb-1 h-4">
+                  {value}
+                </div>
+                {/* Bar */}
+                <div className="w-full flex flex-col justify-end h-12">
+                  <div
+                    className={cn(
+                      "w-full rounded-t transition-all duration-500",
+                      color,
+                    )}
+                    style={{
+                      height: `${finalHeight}%`,
+                      minHeight: "8px",
+                      transitionDelay: `${index * 100}ms`,
+                    }}
+                  />
+                </div>
+                {/* Day label */}
+                <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  D{index + 1}
+                </div>
               </div>
             );
           })}
         </div>
-        <div className="flex justify-between mt-1 text-xs text-gray-500 dark:text-gray-400">
-          <span>{minValue}</span>
-          <span className="text-center">7 days</span>
-          <span>{maxValue}</span>
+
+        {/* Range indicators */}
+        <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-[#3A2A48] pt-2">
+          <span>Min: {minValue}</span>
+          <span>Max: {maxValue}</span>
         </div>
       </div>
     );
