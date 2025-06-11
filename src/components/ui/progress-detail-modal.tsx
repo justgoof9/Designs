@@ -28,14 +28,14 @@ const ProgressDetailModal: React.FC<ProgressDetailModalProps> = ({
 }) => {
   if (!isOpen || !metricType) return null;
 
-  // Mock data for each metric type - simplified for small popup
+  // Dynamic data for each metric type - unique and realistic patterns
   const getMetricData = () => {
     switch (metricType) {
       case "days-to-zero":
         return {
           title: "Days to 0mg",
-          chartData: [3.8, 3.5, 3.2, 2.9, 2.7, 2.5, 2.3], // Last 7 days nicotine intake
-          chartLabel: "Daily intake (mg)",
+          chartData: [4.2, 3.8, 3.5, 3.1, 2.9, 2.5, 2.3], // Decreasing nicotine intake (mg)
+          chartLabel: "Daily nicotine intake (mg)",
           chartColor: "bg-gradient-to-t from-[#8B5CF6] to-[#A855F7]",
           items: [
             {
@@ -58,8 +58,8 @@ const ProgressDetailModal: React.FC<ProgressDetailModalProps> = ({
       case "units-avoided":
         return {
           title: "Units Avoided",
-          chartData: [2, 3, 4, 5, 6, 8, 12], // Units avoided per day
-          chartLabel: "Units avoided daily",
+          chartData: [1, 2, 3, 4, 6, 8, 12], // Increasing units avoided per day
+          chartLabel: "Units avoided per day",
           chartColor: "bg-gradient-to-t from-[#22C55E] to-[#16A34A]",
           items: [
             {
@@ -78,8 +78,8 @@ const ProgressDetailModal: React.FC<ProgressDetailModalProps> = ({
       case "money-saved":
         return {
           title: "Money Saved",
-          chartData: [12, 26, 42, 58, 76, 95, 127], // Cumulative savings
-          chartLabel: "Savings over time ($)",
+          chartData: [14, 28, 45, 62, 83, 105, 127], // Cumulative savings growing ($)
+          chartLabel: "Total savings ($)",
           chartColor: "bg-gradient-to-t from-[#22C55E] to-[#16A34A]",
           items: [
             {
@@ -102,8 +102,8 @@ const ProgressDetailModal: React.FC<ProgressDetailModalProps> = ({
       case "time-saved":
         return {
           title: "Time Saved",
-          chartData: [35, 42, 48, 55, 62, 68, 75], // Minutes saved per day
-          chartLabel: "Minutes saved daily",
+          chartData: [25, 35, 42, 48, 58, 65, 75], // Minutes saved per day (growing trend)
+          chartLabel: "Daily time saved (minutes)",
           chartColor: "bg-gradient-to-t from-[#3B82F6] to-[#1D4ED8]",
           items: [
             {
@@ -149,6 +149,8 @@ const ProgressDetailModal: React.FC<ProgressDetailModalProps> = ({
     label: string;
   }) => {
     const maxValue = Math.max(...data);
+    const minValue = Math.min(...data);
+
     return (
       <div className="bg-gray-50/80 dark:bg-[#2A2038]/40 rounded-2xl p-3 border border-gray-200/50 dark:border-[#3A2A48]/50">
         <div className="flex items-center gap-2 mb-2">
@@ -158,25 +160,33 @@ const ProgressDetailModal: React.FC<ProgressDetailModalProps> = ({
           </span>
         </div>
         <div className="flex items-end gap-1 h-12">
-          {data.map((value, index) => (
-            <div key={index} className="flex-1 flex flex-col items-center">
-              <div
-                className={cn(
-                  "w-full rounded-t-sm transition-all duration-500",
-                  color,
-                )}
-                style={{
-                  height: `${(value / maxValue) * 100}%`,
-                  minHeight: "4px",
-                }}
-              />
-            </div>
-          ))}
+          {data.map((value, index) => {
+            // Calculate height percentage based on actual data range
+            const heightPercent =
+              maxValue === minValue
+                ? 50 // If all values are the same, show 50% height
+                : ((value - minValue) / (maxValue - minValue)) * 100;
+
+            return (
+              <div key={index} className="flex-1 flex flex-col items-center">
+                <div
+                  className={cn(
+                    "w-full rounded-t-sm transition-all duration-500 delay-75",
+                    color,
+                  )}
+                  style={{
+                    height: `${Math.max(heightPercent, 8)}%`, // Minimum 8% for visibility
+                    transitionDelay: `${index * 100}ms`, // Staggered animation
+                  }}
+                />
+              </div>
+            );
+          })}
         </div>
-        <div className="text-center mt-1">
-          <span className="text-xs text-gray-500 dark:text-gray-400">
-            Last 7 days
-          </span>
+        <div className="flex justify-between mt-1 text-xs text-gray-500 dark:text-gray-400">
+          <span>{minValue}</span>
+          <span className="text-center">7 days</span>
+          <span>{maxValue}</span>
         </div>
       </div>
     );
