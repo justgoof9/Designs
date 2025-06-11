@@ -11,6 +11,7 @@ import {
   Target,
   Wind,
   Pill,
+  BarChart3,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -33,6 +34,9 @@ const ProgressDetailModal: React.FC<ProgressDetailModalProps> = ({
       case "days-to-zero":
         return {
           title: "Days to 0mg",
+          chartData: [3.8, 3.5, 3.2, 2.9, 2.7, 2.5, 2.3], // Last 7 days nicotine intake
+          chartLabel: "Daily intake (mg)",
+          chartColor: "bg-gradient-to-t from-[#8B5CF6] to-[#A855F7]",
           items: [
             {
               icon: <Target className="w-5 h-5" />,
@@ -54,6 +58,9 @@ const ProgressDetailModal: React.FC<ProgressDetailModalProps> = ({
       case "units-avoided":
         return {
           title: "Units Avoided",
+          chartData: [2, 3, 4, 5, 6, 8, 12], // Units avoided per day
+          chartLabel: "Units avoided daily",
+          chartColor: "bg-gradient-to-t from-[#22C55E] to-[#16A34A]",
           items: [
             {
               icon: <Cigarette className="w-5 h-5" />,
@@ -71,6 +78,9 @@ const ProgressDetailModal: React.FC<ProgressDetailModalProps> = ({
       case "money-saved":
         return {
           title: "Money Saved",
+          chartData: [12, 26, 42, 58, 76, 95, 127], // Cumulative savings
+          chartLabel: "Savings over time ($)",
+          chartColor: "bg-gradient-to-t from-[#22C55E] to-[#16A34A]",
           items: [
             {
               icon: <DollarSign className="w-5 h-5" />,
@@ -92,6 +102,9 @@ const ProgressDetailModal: React.FC<ProgressDetailModalProps> = ({
       case "time-saved":
         return {
           title: "Time Saved",
+          chartData: [35, 42, 48, 55, 62, 68, 75], // Minutes saved per day
+          chartLabel: "Minutes saved daily",
+          chartColor: "bg-gradient-to-t from-[#3B82F6] to-[#1D4ED8]",
           items: [
             {
               icon: <Clock className="w-5 h-5" />,
@@ -125,6 +138,50 @@ const ProgressDetailModal: React.FC<ProgressDetailModalProps> = ({
     }
   };
 
+  // Simple mini chart component
+  const MiniChart = ({
+    data,
+    color,
+    label,
+  }: {
+    data: number[];
+    color: string;
+    label: string;
+  }) => {
+    const maxValue = Math.max(...data);
+    return (
+      <div className="bg-gray-50/80 dark:bg-[#2A2038]/40 rounded-2xl p-3 border border-gray-200/50 dark:border-[#3A2A48]/50">
+        <div className="flex items-center gap-2 mb-2">
+          <BarChart3 className="w-4 h-4 text-[#8B5CF6]" />
+          <span className="text-xs font-medium text-gray-600 dark:text-gray-400">
+            {label}
+          </span>
+        </div>
+        <div className="flex items-end gap-1 h-12">
+          {data.map((value, index) => (
+            <div key={index} className="flex-1 flex flex-col items-center">
+              <div
+                className={cn(
+                  "w-full rounded-t-sm transition-all duration-500",
+                  color,
+                )}
+                style={{
+                  height: `${(value / maxValue) * 100}%`,
+                  minHeight: "4px",
+                }}
+              />
+            </div>
+          ))}
+        </div>
+        <div className="text-center mt-1">
+          <span className="text-xs text-gray-500 dark:text-gray-400">
+            Last 7 days
+          </span>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div
       className="fixed inset-0 bg-black/60 dark:bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4 font-['Inter',sans-serif]"
@@ -139,6 +196,13 @@ const ProgressDetailModal: React.FC<ProgressDetailModalProps> = ({
         </CardHeader>
 
         <CardContent className="space-y-4">
+          {/* Mini Chart */}
+          <MiniChart
+            data={data.chartData}
+            color={data.chartColor}
+            label={data.chartLabel}
+          />
+
           {/* Items */}
           {data.items.map((item, index) => (
             <div
